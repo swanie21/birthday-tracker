@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-var styles = require('./styles/main.js');
+import styles from './lib/styles/main.js';
+// import firebase from 'firebase';
 import {
   AppRegistry,
   StyleSheet,
