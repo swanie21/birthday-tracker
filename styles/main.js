@@ -1,0 +1,1 @@
+module.exports = require('react-native').StyleSheet.create({"instructions":{"textAlign":"center","color":"#333333","marginBottom":5},"container":{"backgroundColor":"#068888","flex":1,"justifyContent":"center","alignItems":"center"},"title":{"color":"#F7E74A","fontSize":20,"textAlign":"center","margin":10}});
