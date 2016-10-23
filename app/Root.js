@@ -10,13 +10,12 @@ export default class birthdayTracker extends Component {
   handleNavigation() {
     this.refs.navigator.push({
       component: ContactList,
-      title: 'Contacts'
+      title: 'Contacts',
     });
   }
 
   render() {
   return (
-        // <ContactList />
          <NavigatorIOS
           ref="navigator"
           style={styles.container}

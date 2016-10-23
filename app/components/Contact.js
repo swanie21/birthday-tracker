@@ -8,7 +8,6 @@ export default class Contact extends Component {
     return (
       <TouchableHighlight>
         dataSource={dataSource}
-        <Contact />
       </TouchableHighlight>
     );
   }

@@ -21,7 +21,7 @@ export default class ContactList extends Component {
       <ListView
         style={styles.contactList}
         dataSource={this.state.dataSource}
-        renderRow={(contacts) => <Text>{contacts.firstName}{contacts.lastName}</Text>}
+        renderRow={(contacts) => <Text>{contacts.firstName} {contacts.lastName} {contacts.birthday}</Text>}
       />
     );
   }
