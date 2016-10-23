@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from '../styles/main';
-import { ListView } from 'react-native';
+import { ListView, Text } from 'react-native';
 
 const contacts = [
   {firstName: "Kirsten", lastName: "Swanson", birthday: "🎈 February 16th"},
@@ -10,17 +10,19 @@ const contacts = [
 export default class ContactList extends Component {
   constructor(props) {
     super(props);
-    var dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: dataSource.cloneWithRows(contacts)
+      dataSource: ds.cloneWithRows(contacts)
     };
   }
 
   render() {
     return (
       <ListView
-        dataSource={this.state.dataSource}>
-      </ListView>
+        style={styles.contactList}
+        dataSource={this.state.dataSource}
+        renderRow={(contacts) => <Text>{contacts.firstName} {contacts.lastName} {contacts.birthday}</Text>}
+      />
     );
   }
 }

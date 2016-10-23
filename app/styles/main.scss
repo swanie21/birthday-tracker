@@ -1,29 +1,21 @@
 container {
-  background-color: #068888;
   flex: 1;
 }
 
-title {
-  padding-top: 200px;
+loginScreen {
+  align-items: center;
+  background-color: #068888;
+  flex: 1;
+  justify-content: center;
+}
+
+appTitle {
   color: #F7E74A;
-  font-size: 30px;
+  font-size: 40px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
-loginButton {
-  height: 40px;
-}
-
-viewContainer {
-  flex: 1;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-}
-
-logo {
-  flex: 1;
-  height: 200px;
-  width: 200px;
-  align-items: stretch;
+contactList {
+  background-color: #09C6AB; 
 }
