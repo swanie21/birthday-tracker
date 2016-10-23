@@ -3,19 +3,28 @@ import styles from './styles/main';
 import Main from './components/Main';
 import ContactList from './components/ContactList';
 import ContactListContainer from './components/ContactListContainer';
-import ViewContainer from './components/ViewContainer';
-import { View, StyleSheet, Text, NavigatorIOS, TouchableHighlight } from 'react-native';
+import { View, NavigatorIOS } from 'react-native';
 // import firebase from 'firebase';
 
 export default class birthdayTracker extends Component {
+  handleNavigation() {
+    this.refs.navigator.push({
+      component: ContactList,
+      title: 'Contacts'
+    });
+  }
+
   render() {
   return (
-        // <ViewContainer />
+        // <ContactList />
          <NavigatorIOS
+          ref="navigator"
           style={styles.container}
           initialRoute={{
-            title: 'Saves the Day',
-            component: Main
+            component: Main,
+            title: 'Home',
+            rightButtonTitle: 'Contact List',
+            onRightButtonPress: () => this.handleNavigation()
           }}
         />
       );
