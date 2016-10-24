@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import styles from '../styles/main';
 import ContactList from './ContactList';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
-// import firebase from 'firebase';
+import firebase, { contactsRef, Provider } from '../firebase';
 
 export default class Main extends Component {
   goToContactList() {
     this.props.navigator.push({
-      title: 'Contacts',
-      component: ContactList
+      title: 'Saves the Day',
+      component: ContactList,
+      tintColor: '#068888',
+      titleTextColor: '#068888'
     });
   }
 
