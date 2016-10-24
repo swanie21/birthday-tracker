@@ -12,8 +12,9 @@ export default class SearchContacts extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.searchBar}>
         <TextInput
+          style={styles.searchInput}
           placeholder='Search contacts'
           onChangeText={(searchInput) => this.setState({searchInput})}
         />
