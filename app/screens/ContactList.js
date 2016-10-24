@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../styles/main';
-import { ListView, Text } from 'react-native';
+import { ListView, Text, View } from 'react-native';
+import SearchContacts from '../components/SearchContacts';
 
 const contacts = [
   {firstName: "Kirsten", lastName: "Swanson", birthday: "🎈 February 16th"},
@@ -18,11 +19,13 @@ export default class ContactList extends Component {
 
   render() {
     return (
-      <ListView
-        style={styles.contactList}
-        dataSource={this.state.dataSource}
-        renderRow={(contacts) => <Text>{contacts.firstName} {contacts.lastName} {contacts.birthday}</Text>}
-      />
+      <View style={styles.contactList}>
+        <SearchContacts />
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(contacts) => <Text>{contacts.firstName} {contacts.lastName} {contacts.birthday}</Text>}
+        />
+      </View>
     );
   }
 }

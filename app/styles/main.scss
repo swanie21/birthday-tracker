@@ -9,13 +9,42 @@ loginScreen {
   justify-content: center;
 }
 
+loginButton {
+  background-color: #09C6AB;
+  margin-top: 30px;
+  padding: 10px;
+  width: 250px;
+}
+
+loginButtonText {
+  color: #02556D;
+  font-size: 16px;
+  text-align: center;
+}
+
 appTitle {
   color: #F7E74A;
   font-size: 40px;
+  font-weight: bold;
   margin-bottom: 30px;
   text-align: center;
 }
 
 contactList {
-  background-color: #09C6AB; 
+  background-color: #09C6AB;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+
+searchBar {
+  background-color: #EAE8E8;
+  margin-top: 80px;
+  width: 320px;
+}
+
+searchInput {
+  border: 1px solid black;
+  height: 40px;
+  padding-left: 20px;
 }
