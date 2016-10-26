@@ -1,9 +1,10 @@
+'use strict';
 import React, { Component } from 'react';
 import styles from '../styles/main';
 import { TextInput, View } from 'react-native';
 import { Form, DatePickerIOS } from 'react-native-form';
 
-export default class Button extends Component {
+export default class AddContact extends Component {
   constructor() {
     super();
     this.state = {

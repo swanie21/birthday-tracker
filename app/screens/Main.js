@@ -1,3 +1,4 @@
+'use strict';
 import React, { Component } from 'react';
 import ContactList from './ContactList';
 import AddContact from './AddContact';
@@ -25,7 +26,7 @@ const Main = () => {
             <Scene
               key="contacts"
               component={ContactList}
-              title="Contacts"
+              title="Saves the Day"
               initial
             />
           </Scene>
