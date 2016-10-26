@@ -1,33 +1,88 @@
 import React, { Component } from 'react';
-import styles from '../styles/main';
-import { ListView, Text, View } from 'react-native';
+import { TextInput, View, AsyncStorage, ListView, Text, TouchableHighlight } from 'react-native';
 import SearchContacts from '../components/SearchContacts';
-import { actions } from 'react-native-router-flux';
+import Button from '../components/Button';
+import styles from '../styles/main';
 
-const contacts = [
-  {firstName: "Kirsten", lastName: "Swanson", birthday: "🎈 February 16th"},
-  {firstName: "Mitch", lastName: "Davis", birthday: "🎈 June 20th"}
-];
-
-export default class ContactList extends Component {
-  constructor(props) {
-    super(props);
-      const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-      this.state = {
-      dataSource: ds.cloneWithRows(contacts)
+const ContactList = React.createClass({
+  getInitialState () {
+    var contactInfo = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
+    var contacts = [];
+    this.getStorage().then((contacts) => this.setItems(contacts));
+    return {
+      contacts,
+      contactInfo: contactInfo.cloneWithRows(contacts),
+      firstName: '',
+      lastName: ''
     };
-  }
+  },
 
-  render() {
+  updateFirstName(e) {
+    this.setState({firstName: e.nativeEvent.text});
+  },
+
+  updateLastName(e) {
+    this.setState({lastName: e.nativeEvent.text});
+  },
+
+  onPress () {
+    if (this.state.firstName) {
+      this.state.contacts.push(this.state.firstName);
+      this.setItems(this.state.contacts);
+      this.setState({firstName: ''});
+      this.updateStorage();
+    }
+    if (this.state.lastName) {
+      this.state.contacts.push(this.state.lastName);
+      this.setItems(this.state.contacts);
+      this.setState({lastName: ''});
+      this.updateStorage();
+    }
+  },
+
+  getStorage () {
+    return AsyncStorage
+      .getItem('contacts')
+      .then((contacts) => JSON.parse(contacts));
+  },
+
+  updateStorage () {
+    return AsyncStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  },
+
+  setItems (contacts) {
+    var contactInfo = this.state.contactInfo.cloneWithRows(contacts);
+    this.setState({contacts, contactInfo});
+  },
+
+  render () {
     return (
       <View style={styles.contactList}>
         <SearchContacts />
         <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(contacts) => <Text>{contacts.firstName} {contacts.lastName} {contacts.birthday}</Text>}
-          // renderRow={(contacts) => <Text>{contacts.birthday}</Text>}
+          dataSource={this.state.contactInfo}
+          renderRow={(rowData) => <Text>{rowData}</Text>}
         />
+        <View style={styles.firstNameInput}>
+          <TextInput
+            style={styles.inputFields}
+            placeholder="First Name"
+            onChange={this.updateFirstName}
+            value={this.state.firstName}
+          />
+        </View>
+        <View style={styles.lastNameInput}>
+          <TextInput
+            style={styles.inputFields}
+            placeholder="Last Name"
+            onChange={this.updateLastName}
+            value={this.state.lastName}
+          />
+        </View>
+        <Button onPress={this.onPress} title="Save" />
       </View>
     );
   }
-}
+});
+
+export default ContactList;

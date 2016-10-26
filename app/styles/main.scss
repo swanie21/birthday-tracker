@@ -49,3 +49,33 @@ searchInput {
   height: 40px;
   text-align: center;
 }
+
+firstNameInput {
+  background-color: #EAE8E8;
+  margin-bottom: 15px;
+  width: 320px;
+}
+
+lastNameInput {
+  background-color: #EAE8E8;
+  width: 320px;
+}
+
+inputFields {
+  border: 1px solid black;
+  height: 40px;
+  padding-left: 10px;
+}
+
+button {
+  background-color: #F7E74A;
+  border-width: 1;
+  margin: 20;
+  padding: 5;
+  width: 80px;
+}
+
+buttonText {
+  font-size: 16px;
+  text-align: center;
+}
