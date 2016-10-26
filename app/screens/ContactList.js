@@ -14,7 +14,8 @@ const ContactList = React.createClass({
       contactInfo: contactInfo.cloneWithRows(contacts),
       firstName: '',
       lastName: '',
-      birthdayDate: new Date()
+      birthdayDate: new Date(),
+      currentDate: new Date()
     };
   },
 
@@ -80,12 +81,15 @@ const ContactList = React.createClass({
               onChangeText={lastName => this.setState({lastName})}
               value={this.state.lastName}
             />
-            <DatePickerIOS
-              date={this.state.birthdayDate}
-              mode="date"
-              onDateChange={birthdayDate => this.setState({birthdayDate})}
-            />
           </View>
+          {/* <View style={styles.inputFields}>
+              <Text>{this.state.currentDate}</Text>
+          </View> */}
+          <DatePickerIOS
+            date={this.state.birthdayDate}
+            mode="date"
+            onDateChange={birthdayDate => this.setState({birthdayDate})}
+          />
           <Button onPress={this.onPress} title="Save" />
         </ScrollView>
       </View>
