@@ -1,28 +1,46 @@
 import React, { Component } from 'react';
-import styles from '../styles/main';
 import ContactList from './ContactList';
-import { View, Text, Image, TouchableHighlight } from 'react-native';
-import firebase, { contactsRef, Provider } from '../firebase';
+import AddContact from './AddContact';
+import { Text } from 'react-native';
+import { Router, Scene } from 'react-native-router-flux';
 
-export default class Main extends Component {
-  goToContactList() {
-    this.props.navigator.push({
-      title: 'Saves the Day',
-      component: ContactList,
-      tintColor: '#068888',
-      titleTextColor: '#068888'
-    });
-  }
-
-  render() {
-    return (
-      <View style={styles.loginScreen}>
-        <Text style={styles.appTitle}>Saves the Day</Text>
-        <Image source={require('../img/present.png')} />
-        <TouchableHighlight style={styles.loginButton} onPress={() => this.goToContactList()} underlayColor='#7ac4ba'>
-          <Text style={styles.loginButtonText}>View Contacts</Text>
-        </TouchableHighlight>
-      </View>
-    );
-  }
+const { TabIcon } = ({ selected, title }) => {
+  return (
+    <Text>{title}</Text>
+  );
 }
+
+const Main = () => {
+  return (
+    <Router>
+      <Scene key="root">
+
+        <Scene
+          key="tabbar"
+          tabs={true}
+          tabBarStyle={{ backgroundColor: '#FFF' }}
+        >
+
+          <Scene key="contactList" title="Contacts" icon={TabIcon}>
+            <Scene
+              key="contacts"
+              component={ContactList}
+              title="Contacts"
+              initial
+            />
+          </Scene>
+
+          <Scene key="addContacts" title="Add Contact" icon={TabIcon}>
+            <Scene
+              key="addContact"
+              component={AddContact}
+              title="Add Contacts"
+            />
+          </Scene>
+        </Scene>
+      </Scene>
+    </Router>
+  );
+}
+
+export default Main;
