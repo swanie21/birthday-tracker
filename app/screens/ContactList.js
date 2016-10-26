@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, View, AsyncStorage, ListView, Text, TouchableHighlight } from 'react-native';
+import { TextInput, View, AsyncStorage, ListView, Text, TouchableHighlight, DatePickerIOS, ScrollView } from 'react-native';
 import SearchContacts from '../components/SearchContacts';
 import Button from '../components/Button';
 import styles from '../styles/main';
@@ -13,7 +13,8 @@ const ContactList = React.createClass({
       contacts,
       contactInfo: contactInfo.cloneWithRows(contacts),
       firstName: '',
-      lastName: ''
+      lastName: '',
+      birthdayDate: new Date()
     };
   },
 
@@ -47,31 +48,46 @@ const ContactList = React.createClass({
     }
   },
 
+  // renderContactRow(contact) {
+  //   return (
+  //     <TouchableHighlight>
+  //       <Text>{contact.firstName}</Text>}
+  //     </TouchableHighlight>
+  //   );
+  // },
+
   render () {
     return (
       <View style={styles.contactList}>
-        <SearchContacts />
-        <ListView
-          dataSource={this.state.contactInfo}
-          renderRow={(rowData) => <Text>{rowData}</Text>}
-        />
-        <View style={styles.firstNameInput}>
-          <TextInput
-            style={styles.inputFields}
-            placeholder="First Name"
-            onChangeText={firstName => this.setState({firstName})}
-            value={this.state.firstName}
+        <ScrollView>
+          <SearchContacts />
+          <ListView
+            dataSource={this.state.contactInfo}
+            renderRow={(rowData) => <Text>{rowData}</Text>}
           />
-        </View>
-        <View style={styles.lastNameInput}>
-          <TextInput
-            style={styles.inputFields}
-            placeholder="Last Name"
-            onChangeText={lastName => this.setState({lastName})}
-            value={this.state.lastName}
-          />
-        </View>
-        <Button onPress={this.onPress} title="Save" />
+          <View style={styles.firstNameInput}>
+            <TextInput
+              style={styles.inputFields}
+              placeholder="First Name"
+              onChangeText={firstName => this.setState({firstName})}
+              value={this.state.firstName}
+            />
+          </View>
+          <View style={styles.lastNameInput}>
+            <TextInput
+              style={styles.inputFields}
+              placeholder="Last Name"
+              onChangeText={lastName => this.setState({lastName})}
+              value={this.state.lastName}
+            />
+            <DatePickerIOS
+              date={this.state.birthdayDate}
+              mode="date"
+              onDateChange={birthdayDate => this.setState({birthdayDate})}
+            />
+          </View>
+          <Button onPress={this.onPress} title="Save" />
+        </ScrollView>
       </View>
     );
   }
