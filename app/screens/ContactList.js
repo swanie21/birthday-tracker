@@ -17,12 +17,19 @@ const ContactList = React.createClass({
     };
   },
 
-  updateFirstName(e) {
-    this.setState({firstName: e.nativeEvent.text});
+  getStorage () {
+    return AsyncStorage
+    .getItem('contacts')
+    .then((contacts) => JSON.parse(contacts));
   },
 
-  updateLastName(e) {
-    this.setState({lastName: e.nativeEvent.text});
+  updateStorage () {
+    return AsyncStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  },
+
+  setItems (contacts) {
+    var contactInfo = this.state.contactInfo.cloneWithRows(contacts);
+    this.setState({contacts, contactInfo});
   },
 
   onPress () {
@@ -40,21 +47,6 @@ const ContactList = React.createClass({
     }
   },
 
-  getStorage () {
-    return AsyncStorage
-      .getItem('contacts')
-      .then((contacts) => JSON.parse(contacts));
-  },
-
-  updateStorage () {
-    return AsyncStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-  },
-
-  setItems (contacts) {
-    var contactInfo = this.state.contactInfo.cloneWithRows(contacts);
-    this.setState({contacts, contactInfo});
-  },
-
   render () {
     return (
       <View style={styles.contactList}>
@@ -67,7 +59,7 @@ const ContactList = React.createClass({
           <TextInput
             style={styles.inputFields}
             placeholder="First Name"
-            onChange={this.updateFirstName}
+            onChangeText={firstName => this.setState({firstName})}
             value={this.state.firstName}
           />
         </View>
@@ -75,7 +67,7 @@ const ContactList = React.createClass({
           <TextInput
             style={styles.inputFields}
             placeholder="Last Name"
-            onChange={this.updateLastName}
+            onChangeText={lastName => this.setState({lastName})}
             value={this.state.lastName}
           />
         </View>

@@ -18,8 +18,8 @@ export default class AddContact extends Component {
     return (
       <Form ref="form">
         <View>
-          <TextInput type="TextInput" name="firstName" onChangeText={(firstName) => this.setState({firstName})}/>
-          <TextInput type="TextInput" name="lastName" onChangeText={(lastName) => this.setState({lastName})}/>
+          <TextInput type="TextInput" name="firstName" onChangeText={firstName => this.setState({firstName})}/>
+          <TextInput type="TextInput" name="lastName" onChangeText={lastName => this.setState({lastName})}/>
         </View>
         <DatePickerIOS type="DatePickerIOS" name="myBirthday" />
       </Form>

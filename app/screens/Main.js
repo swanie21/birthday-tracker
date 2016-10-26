@@ -4,6 +4,7 @@ import ContactList from './ContactList';
 import AddContact from './AddContact';
 import { Text } from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
+import IndividualContact from './IndividualContact';
 
 const { TabIcon } = ({ selected, title }) => {
   return (
@@ -19,7 +20,7 @@ const Main = () => {
         <Scene
           key="tabbar"
           tabs={true}
-          tabBarStyle={{ backgroundColor: '#FFF' }}
+          tabBarStyle={{ backgroundColor: '#EAE8E8' }}
         >
 
           <Scene key="contactList" title="Contacts" icon={TabIcon}>
@@ -33,9 +34,9 @@ const Main = () => {
 
           <Scene key="addContacts" title="Add Contact" icon={TabIcon}>
             <Scene
-              key="addContact"
-              component={AddContact}
-              title="Add Contacts"
+              key="individualContact"
+              component={IndividualContact}
+              title="Contact Info"
             />
           </Scene>
         </Scene>
