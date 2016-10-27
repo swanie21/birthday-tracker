@@ -37,7 +37,7 @@ export default class AddContact extends Component {
   render() {
     const datePicker = (
       <View>
-        <Button onPress={this.toggleDatePicker} title="Save"/>
+        <Button onPress={this.toggleDatePicker} title="Save Date"/>
         <DatePickerIOS
           date={this.state.birthdayDate}
           mode="date"

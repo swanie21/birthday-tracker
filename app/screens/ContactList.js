@@ -5,15 +5,18 @@ import Button from '../components/Button';
 import ContactCard from '../components/ContactCard';
 import styles from '../styles/main';
 import { Actions } from 'react-native-router-flux';
+import moment from 'moment';
 
 // export default class ContactList extends Component {
 //   constructor() {
 //     super();
+//     const contactInfo = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
 //     this.state = {
 //       firstName: '',
 //       lastName: '',
 //       birthdayDate: new Date(),
-//       datePicker: 'hidden'
+//       datePicker: 'hidden',
+//       contacts: []
 //     };
 //   }
 
@@ -69,7 +72,7 @@ const ContactList = React.createClass({
   render () {
     const datePicker = (
       <View>
-        <Button onPress={this.toggleDatePicker} title="Save"/>
+        <Button onPress={this.toggleDatePicker} title="Save Date"/>
         <DatePickerIOS
           date={this.state.birthdayDate}
           mode="date"
@@ -105,12 +108,10 @@ const ContactList = React.createClass({
           <View>
             <View style={styles.datePicker}>
               <TouchableWithoutFeedback onPress={this.toggleDatePicker}>
-                <View>
+                <View style={styles.dateFormat}>
                   <Text>
-                    {this.state.birthdayDate.getMonth() + 1}
-                    /{this.state.birthdayDate.getDate()}
-                    /{this.state.birthdayDate.getFullYear()}
-                    </Text>
+                    {moment(this.state.birthdayDate).format('MMMM Do YYYY')}
+                  </Text>
                 </View>
               </TouchableWithoutFeedback>
             </View>
