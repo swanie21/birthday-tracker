@@ -1,0 +1,18 @@
+addContact {
+  flex: 1;
+  background-color: #09C6AB;
+  justify-content: center;
+  // align-items: center;
+}
+
+firstNameInput, lastNameInput {
+  background-color: #EAE8E8;
+  margin-bottom: 10px;
+  width: 320px;
+}
+
+inputFields {
+  border: 1px solid black;
+  height: 40px;
+  padding-left: 10px;
+}
