@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './styles/main';
+import ContactCard from './components/ContactCard';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
 import Main from './screens/Main';
 // import firebase, { contactsRef, provider } from '../firebase';

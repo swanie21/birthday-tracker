@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import ContactList from './ContactList';
 import AddContact from './AddContact';
+import ContactCard from '../components/ContactCard';
 import { Text } from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
 
@@ -35,10 +36,17 @@ const Main = () => {
             <Scene
               key="individualContact"
               component={AddContact}
-              title="Contact Info"
+              title="Add Contact"
             />
           </Scene>
+
+          <Scene
+            key="contactInfo"
+            component={ContactCard}
+            title="Contact Info"
+          />
         </Scene>
+
       </Scene>
     </Router>
   );
