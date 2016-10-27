@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, View, AsyncStorage, ListView, Text, TouchableHighlight, DatePickerIOS, ScrollView } from 'react-native';
+import { TextInput, View, AsyncStorage, ListView, Text, TouchableHighlight, DatePickerIOS, ScrollView, TouchableWithoutFeedback } from 'react-native';
 import SearchContacts from '../components/SearchContacts';
 import Button from '../components/Button';
 import ContactCard from '../components/ContactCard';
@@ -12,7 +12,8 @@ import { Actions } from 'react-native-router-flux';
 //     this.state = {
 //       firstName: '',
 //       lastName: '',
-//       birthdayDate: new Date()
+//       birthdayDate: new Date(),
+//       datePicker: 'hidden'
 //     };
 //   }
 
@@ -24,9 +25,11 @@ const ContactList = React.createClass({
     return {
       contacts,
       contactInfo: contactInfo.cloneWithRows(contacts),
+      enableEmptySections: true,
       firstName: '',
       lastName: '',
       birthdayDate: new Date(),
+      datePicker: 'hidden'
     };
   },
 
@@ -46,25 +49,35 @@ const ContactList = React.createClass({
   },
 
   createContact () {
-    if (this.state.firstName) {
-      this.state.contacts.push(this.state.firstName);
-      this.setItems(this.state.contacts);
-      this.setState({firstName: ''});
-      this.updateStorage();
-    }
-    if (this.state.lastName) {
-      this.state.contacts.push(this.state.lastName);
-      this.setItems(this.state.contacts);
-      this.setState({lastName: ''});
-      this.updateStorage();
-    }
+    this.state.contacts.push(this.state.firstName);
+    this.state.contacts.push(this.state.lastName);
+    this.state.contacts.push(this.state.birthdayDate);
+    this.setItems(this.state.contacts);
+    this.setState({ firstName: '', lastName: '' });
+    this.updateStorage();
   },
 
-  // removeStorage() {
-  //   return AsyncStorage.removeItem('contacts');
-  // },
+  removeStorage() {
+    return AsyncStorage.removeItem('contacts');
+  },
+
+  toggleDatePicker() {
+    const display = this.state.datePicker === 'hidden' ? 'visible' : 'hidden';
+    this.setState({ datePicker: display });
+  },
 
   render () {
+    const datePicker = (
+      <View>
+        <Button onPress={this.toggleDatePicker} title="Save"/>
+        <DatePickerIOS
+          date={this.state.birthdayDate}
+          mode="date"
+          onDateChange={birthdayDate => this.setState({birthdayDate})}
+        />
+      </View>
+    )
+
     return (
       <View style={styles.contactList}>
         <ScrollView>
@@ -89,13 +102,22 @@ const ContactList = React.createClass({
               value={this.state.lastName}
             />
           </View>
-          <DatePickerIOS
-            date={this.state.birthdayDate}
-            mode="date"
-            onDateChange={birthdayDate => this.setState({birthdayDate})}
-          />
+          <View>
+            <View style={styles.datePicker}>
+              <TouchableWithoutFeedback onPress={this.toggleDatePicker}>
+                <View>
+                  <Text>
+                    {this.state.birthdayDate.getMonth() + 1}
+                    /{this.state.birthdayDate.getDate()}
+                    /{this.state.birthdayDate.getFullYear()}
+                    </Text>
+                </View>
+              </TouchableWithoutFeedback>
+            </View>
+            {this.state.datePicker === 'visible' ? datePicker : <View/>}
+          </View>
           <Button onPress={this.createContact} title="Save" />
-          <Button onPress={() => Actions.contactInfo()} title="test route" />
+          <Button onPress={this.removeStorage} title="Remove Contacts" />
         </ScrollView>
       </View>
     );

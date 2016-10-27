@@ -1,7 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
 import styles from '../styles/main';
-import { TextInput, View, DatePickerIOS, ListView } from 'react-native';
+import { TextInput, Text, View, DatePickerIOS, ListView, TouchableHighlight, TouchableWithoutFeedback } from 'react-native';
 import Button from '../components/Button';
 
 export default class AddContact extends Component {
@@ -11,7 +11,14 @@ export default class AddContact extends Component {
       firstName: '',
       lastName: '',
       birthdayDate: new Date(),
+      datePicker: 'hidden'
     };
+    this.toggleDatePicker = this.toggleDatePicker.bind(this);
+  }
+
+  toggleDatePicker() {
+    const display = this.state.datePicker === 'hidden' ? 'visible' : 'hidden';
+    this.setState({ datePicker: display });
   }
 
   createContact() {
@@ -28,6 +35,17 @@ export default class AddContact extends Component {
   // }
 
   render() {
+    const datePicker = (
+      <View>
+        <Button onPress={this.toggleDatePicker} title="Save"/>
+        <DatePickerIOS
+          date={this.state.birthdayDate}
+          mode="date"
+          onDateChange={birthdayDate => this.setState({birthdayDate})}
+        />
+      </View>
+    )
+
     return (
       <View style={styles.addContact}>
         <View style={styles.firstNameInput}>
@@ -46,11 +64,20 @@ export default class AddContact extends Component {
             value={this.state.lastName}
           />
         </View>
-        <DatePickerIOS
-          date={this.state.birthdayDate}
-          mode="date"
-          onDateChange={birthdayDate => this.setState({birthdayDate})}
-        />
+        <View>
+          <View style={styles.datePicker}>
+            <TouchableWithoutFeedback onPress={this.toggleDatePicker}>
+              <View>
+                <Text>
+                  {this.state.birthdayDate.getMonth() + 1}
+                  /{this.state.birthdayDate.getDate()}
+                  /{this.state.birthdayDate.getFullYear()}
+                  </Text>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
+          {this.state.datePicker === 'visible' ? datePicker : <View/>}
+        </View>
         <Button onPress={this.createContact} title="Save" />
         <Button onPress={this.editContact} title="Edit" />
       </View>
