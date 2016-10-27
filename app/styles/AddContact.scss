@@ -1,8 +1,8 @@
 addContact {
   flex: 1;
   background-color: #09C6AB;
-  justify-content: center;
   align-items: center;
+  padding-top: 80px;
 }
 
 firstNameInput, lastNameInput {
@@ -14,7 +14,7 @@ firstNameInput, lastNameInput {
 inputFields {
   border: 1px solid black;
   height: 40px;
-  padding-left: 10px;
+  text-align: center;
 }
 
 datePicker {
@@ -23,4 +23,10 @@ datePicker {
   height: 40px;
   padding-left: 10px;
   width: 320px;
+}
+
+dateFormat {
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 }
