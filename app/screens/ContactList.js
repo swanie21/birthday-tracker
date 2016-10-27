@@ -2,14 +2,24 @@ import React, { Component } from 'react';
 import { TextInput, View, AsyncStorage, ListView, Text, TouchableHighlight, DatePickerIOS, ScrollView } from 'react-native';
 import SearchContacts from '../components/SearchContacts';
 import Button from '../components/Button';
-import Contact from '../components/Contact';
+import ContactCard from '../components/ContactCard';
 import styles from '../styles/main';
-import { Action } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
+
+// export default class ContactList extends Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       firstName: '',
+//       lastName: '',
+//       birthdayDate: new Date()
+//     };
+//   }
 
 const ContactList = React.createClass({
   getInitialState () {
-    var contactInfo = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
-    var contacts = [];
+    const contactInfo = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
+    const contacts = [];
     this.getStorage().then((contacts) => this.setItems(contacts));
     return {
       contacts,
@@ -17,7 +27,6 @@ const ContactList = React.createClass({
       firstName: '',
       lastName: '',
       birthdayDate: new Date(),
-      currentDate: new Date()
     };
   },
 
@@ -32,11 +41,11 @@ const ContactList = React.createClass({
   },
 
   setItems (contacts) {
-    var contactInfo = this.state.contactInfo.cloneWithRows(contacts);
+    const contactInfo = this.state.contactInfo.cloneWithRows(contacts);
     this.setState({contacts, contactInfo});
   },
 
-  onPress () {
+  createContact () {
     if (this.state.firstName) {
       this.state.contacts.push(this.state.firstName);
       this.setItems(this.state.contacts);
@@ -51,12 +60,8 @@ const ContactList = React.createClass({
     }
   },
 
-  // renderContactRow(contact) {
-  //   return (
-  //     <TouchableHighlight>
-  //       <Text>{contact.firstName}</Text>}
-  //     </TouchableHighlight>
-  //   );
+  // removeStorage() {
+  //   return AsyncStorage.removeItem('contacts');
   // },
 
   render () {
@@ -66,7 +71,7 @@ const ContactList = React.createClass({
           <SearchContacts />
           <ListView
             dataSource={this.state.contactInfo}
-            renderRow={(rowData) => <Text>{rowData}</Text>}
+            renderRow={(contacts) => <Text style={{borderWidth: 0.9, borderColor: 'green'}} onPress={() => Actions.contactInfo()}>{contacts}</Text>}
           />
           <View style={styles.firstNameInput}>
             <TextInput
@@ -89,7 +94,8 @@ const ContactList = React.createClass({
             mode="date"
             onDateChange={birthdayDate => this.setState({birthdayDate})}
           />
-          <Button onPress={this.onPress} title="Save" />
+          <Button onPress={this.createContact} title="Save" />
+          <Button onPress={() => Actions.contactInfo()} title="test route" />
         </ScrollView>
       </View>
     );
