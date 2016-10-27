@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { TextInput, View, AsyncStorage, ListView, Text, TouchableHighlight, DatePickerIOS, ScrollView } from 'react-native';
 import SearchContacts from '../components/SearchContacts';
 import Button from '../components/Button';
+import Contact from '../components/Contact';
 import styles from '../styles/main';
+import { Action } from 'react-native-router-flux';
 
 const ContactList = React.createClass({
   getInitialState () {
@@ -82,9 +84,6 @@ const ContactList = React.createClass({
               value={this.state.lastName}
             />
           </View>
-          {/* <View style={styles.inputFields}>
-              <Text>{this.state.currentDate}</Text>
-          </View> */}
           <DatePickerIOS
             date={this.state.birthdayDate}
             mode="date"
