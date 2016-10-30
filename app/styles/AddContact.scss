@@ -2,7 +2,7 @@ addContact {
   flex: 1;
   background-color: #09C6AB;
   align-items: center;
-  padding-top: 80px;
+  padding-top: 75px;
 }
 
 firstNameInput, lastNameInput {
@@ -22,4 +22,8 @@ datePicker {
   border-radius: 10px;
   background-color: #EAE8E8;
   width: 320px;
+}
+
+avatar {
+margin-bottom: 10px;
 }
