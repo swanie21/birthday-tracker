@@ -5,11 +5,11 @@ import { View, Text } from 'react-native';
 
 export default class Contact extends Component {
   render() {
-    const contactInfo = this.dataSource.cloneWithRows(this.props.contacts);
+    // const contactInfo = this.dataSource.cloneWithRows(this.props.contacts);
     return (
       <View>
-        <Text>Hello</Text>
-        dataSource={dataSource}
+        <Text style={{marginTop: 100}}>Hello</Text>
+        {/* dataSource={dataSource} */}
       </View>
     );
   }
