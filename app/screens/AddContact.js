@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import styles from '../styles/main';
 import { TextInput, Text, View, DatePickerIOS, ListView, TouchableHighlight, TouchableWithoutFeedback } from 'react-native';
 import Button from '../components/Button';
+import moment from 'moment';
+import firebase, { contactsRef, provider } from '../firebase';
+import ContactList from './ContactList';
 
 export default class AddContact extends Component {
   constructor() {
@@ -22,17 +25,16 @@ export default class AddContact extends Component {
   }
 
   createContact() {
-    const contactInfo = new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2});
-    contactInfo.push(this.state);
+    contactsRef.push(this.state);
+    // this.props.navigator.push({
+    //   component: ContactList,
+    //   title: 'Saves the Day'
+    // });
     this.setState({
       firstName: '',
-      lastName: ''
+      lastName: '',
     });
   }
-
-  // editContact() {
-  //
-  // }
 
   render() {
     const datePicker = (
@@ -67,19 +69,16 @@ export default class AddContact extends Component {
         <View>
           <View style={styles.datePicker}>
             <TouchableWithoutFeedback onPress={this.toggleDatePicker}>
-              <View>
+              <View style={styles.dateFormat}>
                 <Text>
-                  {this.state.birthdayDate.getMonth() + 1}
-                  /{this.state.birthdayDate.getDate()}
-                  /{this.state.birthdayDate.getFullYear()}
-                  </Text>
+                  {moment(this.state.birthdayDate).format('MMMM Do YYYY')}
+                </Text>
               </View>
             </TouchableWithoutFeedback>
           </View>
           {this.state.datePicker === 'visible' ? datePicker : <View/>}
         </View>
-        <Button onPress={this.createContact} title="Save" />
-        <Button onPress={this.editContact} title="Edit" />
+        <Button onPress={this.createContact.bind(this)} title="Save" />
       </View>
     );
   }

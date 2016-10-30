@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import Root from './app/Root';
+import Main from './app/screens/Main';
 
-AppRegistry.registerComponent('birthdayTracker', () => Root);
+AppRegistry.registerComponent('birthdayTracker', () => Main);
