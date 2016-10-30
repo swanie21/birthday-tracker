@@ -1,9 +1,9 @@
 'use strict';
 import React, { Component } from 'react';
 import styles from '../styles/main';
-import { TextInput, Text, View, ListView, TouchableHighlight, TouchableWithoutFeedback } from 'react-native';
+import { TextInput, Image, View } from 'react-native';
 import Button from '../components/Button';
-import firebase, { contactsRef, provider } from '../firebase';
+import firebase, { contactsRef } from '../firebase';
 import ContactList from './ContactList';
 import DatePicker from 'react-native-datepicker';
 
@@ -32,6 +32,7 @@ export default class AddContact extends Component {
   render() {
     return (
       <View style={styles.addContact}>
+        <Image style={styles.avatar} source={require('../img/avatar-placeholder.png')} />
         <View style={styles.firstNameInput}>
           <TextInput
             style={styles.inputFields}
