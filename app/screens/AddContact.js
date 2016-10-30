@@ -1,11 +1,11 @@
 'use strict';
 import React, { Component } from 'react';
 import styles from '../styles/main';
-import { TextInput, Text, View, DatePickerIOS, ListView, TouchableHighlight, TouchableWithoutFeedback } from 'react-native';
+import { TextInput, Text, View, ListView, TouchableHighlight, TouchableWithoutFeedback } from 'react-native';
 import Button from '../components/Button';
-import moment from 'moment';
 import firebase, { contactsRef, provider } from '../firebase';
 import ContactList from './ContactList';
+import DatePicker from 'react-native-datepicker';
 
 export default class AddContact extends Component {
   constructor() {
@@ -14,14 +14,7 @@ export default class AddContact extends Component {
       firstName: '',
       lastName: '',
       birthdayDate: new Date(),
-      datePicker: 'hidden'
     };
-    this.toggleDatePicker = this.toggleDatePicker.bind(this);
-  }
-
-  toggleDatePicker() {
-    const display = this.state.datePicker === 'hidden' ? 'visible' : 'hidden';
-    this.setState({ datePicker: display });
   }
 
   createContact() {
@@ -37,23 +30,12 @@ export default class AddContact extends Component {
   }
 
   render() {
-    const datePicker = (
-      <View>
-        <Button onPress={this.toggleDatePicker} title="Save Date"/>
-        <DatePickerIOS
-          date={this.state.birthdayDate}
-          mode="date"
-          onDateChange={birthdayDate => this.setState({birthdayDate})}
-        />
-      </View>
-    )
-
     return (
       <View style={styles.addContact}>
         <View style={styles.firstNameInput}>
           <TextInput
             style={styles.inputFields}
-            placeholder="First Name"
+            placeholder='First Name'
             onChangeText={firstName => this.setState({firstName})}
             value={this.state.firstName}
           />
@@ -61,24 +43,24 @@ export default class AddContact extends Component {
         <View style={styles.lastNameInput}>
           <TextInput
             style={styles.inputFields}
-            placeholder="Last Name"
+            placeholder='Last Name'
             onChangeText={lastName => this.setState({lastName})}
             value={this.state.lastName}
           />
         </View>
         <View>
-          <View style={styles.datePicker}>
-            <TouchableWithoutFeedback onPress={this.toggleDatePicker}>
-              <View style={styles.dateFormat}>
-                <Text>
-                  {moment(this.state.birthdayDate).format('MMMM Do YYYY')}
-                </Text>
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-          {this.state.datePicker === 'visible' ? datePicker : <View/>}
+          <DatePicker
+            style={styles.datePicker}
+            date={this.state.birthdayDate}
+            mode='date'
+            format='MMMM Do, YYYY'
+            confirmBtnText='Save'
+            cancelBtnText='Cancel'
+            customStyles={{dateInput: {borderRadius: 10, borderWidth: 0, paddingLeft: 50}}}
+            onDateChange={birthdayDate => this.setState({birthdayDate})}
+          />
         </View>
-        <Button onPress={this.createContact.bind(this)} title="Save" />
+        <Button onPress={this.createContact.bind(this)} title='Save' />
       </View>
     );
   }
