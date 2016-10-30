@@ -4,20 +4,13 @@ import styles from '../styles/main';
 import { View, TextInput } from 'react-native';
 
 export default class SearchContacts extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchInput: ''
-    };
-  }
-
   render() {
     return (
       <View style={styles.searchBar}>
         <TextInput
+          value={this.props.searchInput}
           style={styles.searchInput}
           placeholder='Search contacts'
-          onChangeText={(searchInput) => this.setState({searchInput})}
         />
       </View>
     );

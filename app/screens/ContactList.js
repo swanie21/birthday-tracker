@@ -13,7 +13,8 @@ export default class ContactList extends Component {
   super(props);
     this.state = {
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
-      contacts: []
+      contacts: [],
+      searchInput: ''
     };
   }
 
@@ -29,10 +30,21 @@ export default class ContactList extends Component {
     });
   }
 
+  filterNotes(searchInput, contacts) {
+  let search = searchInput.toLowerCase();
+  return filter(contacts, (n) => {
+    let note = n.body.toLowerCase();
+      return note.search(text) !== -1;
+    });
+  }
+
   render() {
     return (
       <View style={styles.contactList}>
-        <SearchContacts />
+        <SearchContacts
+          value={this.state.searchInput}
+          onChangeText={searchInput => this.setState({searchInput})}
+        />
         <ListView
           enableEmptySections
           dataSource={this.state.dataSource}
