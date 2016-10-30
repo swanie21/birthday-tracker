@@ -10,10 +10,11 @@ searchBar {
   background-color: #EAE8E8;
   margin: 80px 0 10px 0;
   width: 320px;
+  border-radius: 10px;
 }
 
 searchInput {
-  border: 1px solid black;
+  color: #02556D;
   height: 40px;
   text-align: center;
 }

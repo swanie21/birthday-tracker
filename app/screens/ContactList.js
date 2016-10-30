@@ -32,10 +32,12 @@ export default class ContactList extends Component {
   render() {
     return (
       <View style={styles.contactList}>
+        <SearchContacts />
         <ListView
           enableEmptySections
           dataSource={this.state.dataSource}
-          renderRow={(contacts) => <Text>{contacts.firstName} {contacts.lastName}</Text>}
+          renderRow={(contacts) => <ContactCard {...contacts}/>}
+          // renderRow={(contacts) => <Text>{contacts.firstName} {contacts.lastName}</Text>}
         />
       </View>
     );

@@ -1,12 +1,20 @@
 button {
   background-color: #F7E74A;
-  border-width: 1;
+  border-radius: 5px;
   margin: 20;
   padding: 5;
   width: 80px;
+  shadow-color: #000000;
+  shadow-opacity: 0.5;
+  shadow-radius: 2;
+  shadow-offset {
+   height: 1;
+   width: 0;
+ }
 }
 
 buttonText {
+  color: #02556D;
   font-size: 16px;
   text-align: center;
 }
