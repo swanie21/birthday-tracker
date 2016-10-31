@@ -1,6 +1,19 @@
 contactCard {
-  align-items: center;
   background-color: #09C6AB;
+  border-bottom-width: 1;
   flex: 1;
-  justify-content: center;
+  justify-content: flex-end;
+  padding: 12px 0 12px 90px;
+  width: 320px;
+}
+
+nameText {
+  color: #013240;
+  font-size: 16px;
+  font-weight: bold;
+  padding:0 0 5px 20px;
+}
+
+birthdayText {
+  color: #013240;
 }

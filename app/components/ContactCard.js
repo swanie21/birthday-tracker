@@ -7,10 +7,12 @@ import IndividualContact from '../screens/IndividualContact';
 
 const ContactCard = ({ firstName, lastName, birthdayDate }) => {
   return (
-    <TouchableHighlight onPress={() => Actions.IndividualContact()} style={styles.contactCard}>
+    <TouchableHighlight
+      style={styles.contactCard}
+      onPress={() => Actions.IndividualContact()}>
       <View>
-        <Text>{firstName} {lastName}</Text>
-        <Text>{birthdayDate}</Text>
+        <Text style={styles.nameText}>{firstName} {lastName}</Text>
+        <Text style={styles.birthdayText}>🎈{birthdayDate}</Text>
       </View>
     </TouchableHighlight>
   );

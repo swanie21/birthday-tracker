@@ -30,11 +30,11 @@ export default class ContactList extends Component {
     });
   }
 
-  filterNotes(searchInput, contacts) {
+  filterContacts(searchInput, contacts) {
   let search = searchInput.toLowerCase();
-  return filter(contacts, (n) => {
-    let note = n.body.toLowerCase();
-      return note.search(text) !== -1;
+  return filter(contacts, (c) => {
+    let contact = c.body.toLowerCase();
+      return contact.search(text) !== -1;
     });
   }
 
@@ -49,7 +49,6 @@ export default class ContactList extends Component {
           enableEmptySections
           dataSource={this.state.dataSource}
           renderRow={(contacts) => <ContactCard {...contacts}/>}
-          // renderRow={(contacts) => <Text>{contacts.firstName} {contacts.lastName}</Text>}
         />
       </View>
     );
