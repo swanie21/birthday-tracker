@@ -1,6 +1,7 @@
 contactCard {
   background-color: #09C6AB;
-  border-bottom-width: 1;
+  border-bottom-width: 0.5;
+  border-color: lighten(#013240, 15%);
   flex: 1;
   justify-content: flex-end;
   padding: 12px 0 12px 90px;

@@ -14,8 +14,8 @@ export default class Camera extends Component {
   selectPhotoTapped() {
     const options = {
       quality: 1.0,
-      maxWidth: 500,
-      maxHeight: 500,
+      maxWidth: 125,
+      maxHeight: 125,
       storageOptions: {
         skipBackup: true
       }
@@ -30,14 +30,9 @@ export default class Camera extends Component {
       else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
       }
-      else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      }
       else {
-        let source;
+        const source = {uri: response.uri.replace('file://', ''), isStatic: true};
 
-        // You can display the image using either:
-        //source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
         this.setState({
           avatar: source
         });

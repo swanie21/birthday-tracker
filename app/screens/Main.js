@@ -2,11 +2,9 @@
 import React, { Component } from 'react';
 import ContactList from './ContactList';
 import AddContact from './AddContact';
-import ContactCard from '../components/ContactCard';
 import IndividualContact from './IndividualContact';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import { Router, Scene } from 'react-native-router-flux';
-import firebase, { contactsRef, provider } from '../firebase';
 
 const TabIcon = ({ selected, title }) => {
   return (
