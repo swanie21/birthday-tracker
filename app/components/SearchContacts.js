@@ -9,7 +9,6 @@ const SearchContacts = ({ onChange }) => {
       <TextInput
         autoCapitalize='none'
         autoCorrect={false}
-        autoFocus={true}
         onChange={onChange}
         style={styles.searchInput}
         placeholder='Search contacts'

@@ -11,5 +11,4 @@ const config = {
 firebase.initializeApp(config);
 
 export const contactsRef = firebase.database().ref('contacts');
-export const provider = new firebase.auth.GoogleAuthProvider();
 export default firebase;

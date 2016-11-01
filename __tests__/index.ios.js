@@ -1,6 +1,6 @@
 import 'react-native';
 import React from 'react';
-import Index from '../index.ios.js';
+// import Index from '../index.ios.js';
 import AddContact from '../app/screens/AddContact';
 import renderer from 'react-test-renderer';
 

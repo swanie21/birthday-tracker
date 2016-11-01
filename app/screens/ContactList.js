@@ -21,7 +21,7 @@ export default class ContactList extends Component {
     contactsRef.on('value', (snapshot) => {
       let contacts = snapshot.val();
       if(!contacts) { return this.setState({ contacts: [] }); }
-      contacts = split(contacts).map(contact => Object.assign({ key: contact.key }, contact.value));
+      contacts = split(contacts).map(contact => Object.assign({ id: contact.key }, contact.value));
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(contacts),
         contacts
@@ -29,8 +29,8 @@ export default class ContactList extends Component {
     });
   }
 
-  filterContacts(event) {
-    let textInput = event.nativeEvent.text.toLowerCase();
+  filterContacts(e) {
+    let textInput = e.nativeEvent.text.toLowerCase();
     let filter = [];
       this.state.contacts.forEach(contact => {
         if(contact.firstName.toLowerCase().indexOf(textInput) !== -1 ||
@@ -43,14 +43,8 @@ export default class ContactList extends Component {
     });
   }
 
-  deleteContact(key) {
-    const contacts = this.state.contacts;
-    contacts.splice(key, 1);
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(contacts)
-    });
-    // contactsRef.remove(); => removes all contacts
-    // contactsRef.child(key).remove();
+  deleteContact(id) {
+    contactsRef.child(id).remove();
     Actions.contactList();
   }
 
@@ -63,7 +57,13 @@ export default class ContactList extends Component {
         <ListView
           enableEmptySections
           dataSource={this.state.dataSource}
-          renderRow={(contacts) => <ContactCard {...contacts} onPress={this.deleteContact.bind(this)} value={this.state.notes} onChangeText={notes => this.setState({notes})} />}
+          renderRow={(contacts) =>
+            <ContactCard
+              {...contacts}
+              onPress={this.deleteContact.bind(this)}
+              value={this.state.notes}
+              onChangeText={notes => this.setState({notes})}
+            />}
         />
       </View>
     );

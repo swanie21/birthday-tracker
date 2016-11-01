@@ -34,7 +34,7 @@ export default class IndividualContact extends Component {
         </View>
         {/* <Button onPress={this.createNotes()} title="Save" /> */}
         <Button onPress={() => Actions.addContacts()} title="Edit" />
-        <Button onPress={this.props.onPress} title="Delete" />
+        <Button onPress={e => this.props.onPress(this.props.id)} title="Delete" />
       </View>
     );
   }
