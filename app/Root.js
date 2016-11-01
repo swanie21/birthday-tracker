@@ -3,6 +3,7 @@ import styles from './styles/main';
 import ContactCard from './components/ContactCard';
 import { View, Text, Image, TouchableHighlight } from 'react-native';
 import Main from './screens/Main';
+import { Actions } from 'react-native-router-flux';
 // import firebase, { contactsRef, provider } from '../firebase';
 
 export default class birthdayTracker extends Component {
@@ -38,7 +39,7 @@ export default class birthdayTracker extends Component {
       //   <Image source={require('./img/present.png')} />
       //   <TouchableHighlight
       //     style={styles.loginButton}
-      //     onPress={() => firebase.auth().signInWithCredential(provider.credential(R63gFHdzcXy14dc1tQhnnbxi))}
+          // onPress={() => firebase.auth().signInWithCredential(provider.credential(R63gFHdzcXy14dc1tQhnnbxi))}
       //     underlayColor='#7ac4ba'>
       //     <Text style={styles.loginButtonText}>Login with Google</Text>
       //   </TouchableHighlight>

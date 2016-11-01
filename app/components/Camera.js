@@ -1,3 +1,4 @@
+'use strict';
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, Image, Platform } from 'react-native';
 import styles from '../styles/main';
