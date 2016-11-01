@@ -8,9 +8,9 @@ const ContactCard = ({ firstName, lastName, birthdayDate, onPress }) => {
   return (
     <TouchableHighlight
       style={styles.contactCard}
-      onPress={() => Actions.contactInfo({firstName, lastName, birthdayDate, onPress})}>
+      onPress={() => Actions.contactInfo({firstName, lastName, birthdayDate, onPress })}>
       <View>
-        <Text style={styles.nameText}>{firstName} {lastName}</Text>
+        <Text style={styles.nameText}>{`${firstName} ${lastName}`}</Text>
         <Text style={styles.birthdayText}>🎈{birthdayDate}</Text>
       </View>
     </TouchableHighlight>

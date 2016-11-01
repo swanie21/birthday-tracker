@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextInput, View, AsyncStorage, ListView, Text, TouchableHighlight, DatePickerIOS, ScrollView, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import { View, ListView } from 'react-native';
 import styles from '../styles/main';
 import SearchContacts from '../components/SearchContacts';
 import ContactCard from '../components/ContactCard';
@@ -13,7 +13,7 @@ export default class ContactList extends Component {
     this.state = {
       dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
       contacts: [],
-      searchInput: ''
+      searchInput: '',
     };
   }
 
@@ -29,11 +29,17 @@ export default class ContactList extends Component {
     });
   }
 
-  filterContacts(searchInput, contacts) {
-  let search = searchInput.toLowerCase();
-  return filter(contacts, (c) => {
-    let contact = c.body.toLowerCase();
-      return contact.search(text) !== -1;
+  filterContacts(event) {
+    let textInput = event.nativeEvent.text.toLowerCase();
+    let filter = [];
+      this.state.contacts.forEach(contact => {
+        if(contact.firstName.toLowerCase().indexOf(textInput) !== -1 ||
+          contact.lastName.toLowerCase().indexOf(textInput) !== -1) {
+          filter.push(contact);
+        }
+      });
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(filter)
     });
   }
 
@@ -52,13 +58,12 @@ export default class ContactList extends Component {
     return (
       <View style={styles.contactList}>
         <SearchContacts
-          value={this.state.searchInput}
-          onChangeText={searchInput => this.setState({searchInput})}
+          onChange={this.filterContacts.bind(this)}
         />
         <ListView
           enableEmptySections
           dataSource={this.state.dataSource}
-          renderRow={(contacts) => <ContactCard {...contacts} onPress={this.deleteContact.bind(this)} />}
+          renderRow={(contacts) => <ContactCard {...contacts} onPress={this.deleteContact.bind(this)} value={this.state.notes} onChangeText={notes => this.setState({notes})} />}
         />
       </View>
     );
