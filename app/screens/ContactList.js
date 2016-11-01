@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { TextInput, View, AsyncStorage, ListView, Text, TouchableHighlight, DatePickerIOS, ScrollView, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 import styles from '../styles/main';
 import SearchContacts from '../components/SearchContacts';
-import Button from '../components/Button';
 import ContactCard from '../components/ContactCard';
-import moment from 'moment';
-import firebase, { contactsRef, provider } from '../firebase';
+import firebase, { contactsRef } from '../firebase';
 import split from 'split-object';
+import { Actions } from 'react-native-router-flux';
 
 export default class ContactList extends Component {
   constructor(props) {
@@ -22,7 +21,7 @@ export default class ContactList extends Component {
     contactsRef.on('value', (snapshot) => {
       let contacts = snapshot.val();
       if(!contacts) { return this.setState({ contacts: [] }); }
-      contacts = split(contacts).map(contact => ({ key: contact.key }, contact.value));
+      contacts = split(contacts).map(contact => Object.assign({ key: contact.key }, contact.value));
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(contacts),
         contacts
@@ -38,6 +37,17 @@ export default class ContactList extends Component {
     });
   }
 
+  deleteContact(key) {
+    const contacts = this.state.contacts;
+    contacts.splice(key, 1);
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(contacts)
+    });
+    // contactsRef.remove(); => removes all contacts
+    // contactsRef.child(key).remove();
+    Actions.contactList();
+  }
+
   render() {
     return (
       <View style={styles.contactList}>
@@ -48,7 +58,7 @@ export default class ContactList extends Component {
         <ListView
           enableEmptySections
           dataSource={this.state.dataSource}
-          renderRow={(contacts) => <ContactCard {...contacts}/>}
+          renderRow={(contacts) => <ContactCard {...contacts} onPress={this.deleteContact.bind(this)} />}
         />
       </View>
     );
