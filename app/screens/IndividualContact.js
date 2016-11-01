@@ -22,13 +22,13 @@ export default class IndividualContact extends Component {
         <View style={styles.notesField}>
           <AutoGrowingTextInput
             style={styles.notesInput}
-            placeholder='Notes'
+            placeholder='Present ideas...'
             onChangeText={notes => this.setState({notes})}
             value={this.state.notes}
           />
         </View>
         <Button onPress={() => Actions.addContacts()} title="Edit" />
-        <Button title="Delete" />
+        <Button onPress={this.props.onPress} title="Delete" />
       </View>
     );
   }
