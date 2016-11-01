@@ -5,6 +5,7 @@ import { View, Text, TextInput, StyleSheet } from 'react-native';
 import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
 import Button from '../components/Button';
 import { Actions } from 'react-native-router-flux';
+import firebase, { contactsRef } from '../firebase';
 
 export default class IndividualContact extends Component {
   constructor(props) {
@@ -14,10 +15,14 @@ export default class IndividualContact extends Component {
     };
   }
 
+  // createNotes() {
+  //   contactsRef.push(this.state);
+  // }
+
   render() {
     return (
       <View style={styles.individualContact}>
-        <Text style={styles.nameText}>{this.props.firstName} {this.props.lastName}</Text>
+        <Text style={styles.nameText}>{`${this.props.firstName} ${this.props.lastName}`}</Text>
         <Text style={styles.birthdayText}>🎈{this.props.birthdayDate}</Text>
         <View style={styles.notesField}>
           <AutoGrowingTextInput
@@ -27,6 +32,7 @@ export default class IndividualContact extends Component {
             value={this.state.notes}
           />
         </View>
+        {/* <Button onPress={this.createNotes()} title="Save" /> */}
         <Button onPress={() => Actions.addContacts()} title="Edit" />
         <Button onPress={this.props.onPress} title="Delete" />
       </View>
