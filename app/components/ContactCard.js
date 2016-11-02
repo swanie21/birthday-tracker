@@ -15,9 +15,7 @@ const ContactCard = ({ firstName, lastName, birthdayDate, id, onPress, avatar, u
             <Image style={styles.listAvatar} source={{uri: url}} />
           }
         </View> */}
-        <View>
-          <Image style={styles.listAvatar} source={require('../img/list-avatar.png')} />
-        </View>
+        <Image style={styles.listAvatar} source={require('../img/list-avatar.png')} />
         <View style={styles.card}>
           <Text style={styles.nameText}>{`${firstName} ${lastName}`}</Text>
           <Text style={styles.birthdayText}>🎈{birthdayDate}</Text>

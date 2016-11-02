@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from '../styles/main';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Image } from 'react-native';
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 import Button from '../components/Button';
 import { Actions } from 'react-native-router-flux';
@@ -22,6 +22,12 @@ export default class IndividualContact extends Component {
   render() {
     return (
       <View style={styles.individualContact}>
+        {/* <View>
+          { this.props.avatar === null ? <Image style={styles.listAvatar} source={require('../img/avatar-placeholder.png')} /> :
+            <Image style={styles.listAvatar} source={{uri: this.props.url}} />
+          }
+        </View> */}
+        <Image style={styles.individualAvatar} source={require('../img/individual-avatar.png')} />
         <Text style={styles.nameText}>{`${this.props.firstName} ${this.props.lastName}`}</Text>
         <Text style={styles.birthdayText}>🎈{this.props.birthdayDate}</Text>
         <View style={styles.notesField}>
@@ -32,9 +38,11 @@ export default class IndividualContact extends Component {
             value={this.state.notes}
           />
         </View>
-        <Button onPress={e => this.createNotes(this.props.id)} title="Save" />
-        <Button onPress={() => Actions.addContacts()} title="Edit" />
-        <Button onPress={e => this.props.onPress(this.props.id)} title="Delete" />
+        {/* <Button onPress={e => this.createNotes(this.props.id)} title="Save" /> */}
+        <View style={styles.row}>
+          <Button onPress={() => Actions.addContacts()} title="Edit" />
+          <Button onPress={e => this.props.onPress(this.props.id)} title="Delete" />
+        </View>
       </View>
     );
   }

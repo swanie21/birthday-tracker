@@ -45,10 +45,12 @@ export default class AddContact extends Component {
             placeholder='First Name'
             onChangeText={firstName => this.setState({firstName})}
             value={this.state.firstName}
+            onSubmitEditing={e => this.refs.lastNameInput.focus()}
           />
         </View>
         <View style={styles.lastNameInput}>
           <TextInput
+            ref='lastNameInput'
             style={styles.inputFields}
             placeholder='Last Name'
             onChangeText={lastName => this.setState({lastName})}
