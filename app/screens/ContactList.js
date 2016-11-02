@@ -1,3 +1,4 @@
+'use strict';
 import React, { Component } from 'react';
 import { View, ListView } from 'react-native';
 import styles from '../styles/main';
@@ -57,13 +58,7 @@ export default class ContactList extends Component {
         <ListView
           enableEmptySections
           dataSource={this.state.dataSource}
-          renderRow={(contacts) =>
-            <ContactCard
-              {...contacts}
-              onPress={this.deleteContact.bind(this)}
-              value={this.state.notes}
-              onChangeText={notes => this.setState({notes})}
-            />}
+          renderRow={(contacts) => <ContactCard {...contacts} onPress={this.deleteContact.bind(this)} />}
         />
       </View>
     );

@@ -32,7 +32,7 @@ export default class Camera extends Component {
         console.log('ImagePicker Error: ', response.error);
       }
       else {
-        const source = {uri: response.uri.replace('file://', ''), isStatic: true};
+        const source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
 
         this.setState({
           avatar: source

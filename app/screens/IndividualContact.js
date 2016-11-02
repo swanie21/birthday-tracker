@@ -1,4 +1,3 @@
-'use strict';
 import React, { Component } from 'react';
 import styles from '../styles/main';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
@@ -13,11 +12,12 @@ export default class IndividualContact extends Component {
     this.state = {
       notes: ''
     };
+    this.createNotes = this.createNotes.bind(this);
   }
 
-  // createNotes() {
-  //   contactsRef.push(this.state);
-  // }
+  createNotes(id) {
+    firebase.database().ref(`contacts/${id}`).push(this.state);
+  }
 
   render() {
     return (
@@ -32,7 +32,7 @@ export default class IndividualContact extends Component {
             value={this.state.notes}
           />
         </View>
-        {/* <Button onPress={this.createNotes()} title="Save" /> */}
+        <Button onPress={e => this.createNotes(this.props.id)} title="Save" />
         <Button onPress={() => Actions.addContacts()} title="Edit" />
         <Button onPress={e => this.props.onPress(this.props.id)} title="Delete" />
       </View>
