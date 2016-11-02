@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, ListView } from 'react-native';
 import styles from '../styles/main';
-import SearchContacts from '../components/SearchContacts';
+import SearchBar from '../components/SearchBar';
 import ContactCard from '../components/ContactCard';
 import firebase, { contactsRef } from '../firebase';
 import split from 'split-object';
@@ -51,7 +51,7 @@ export default class ContactList extends Component {
   render() {
     return (
       <View style={styles.contactList}>
-        <SearchContacts
+        <SearchBar
           onChange={this.filterContacts.bind(this)}
         />
         <ListView

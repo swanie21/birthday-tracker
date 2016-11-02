@@ -4,6 +4,9 @@
     "window",
     "-Promise"
   ],
+  "globals": {
+  "wrapper": false
+  },
   "browser": true,
   "boss": true,
   "curly": true,
@@ -32,5 +35,6 @@
   "eqnull": true,
   "esnext": true,
   "unused": true,
-  "mocha": true
+  "mocha": true,
+  "esversion": 6
 }

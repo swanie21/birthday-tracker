@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import styles from '../styles/main';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
-import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
+import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 import Button from '../components/Button';
 import { Actions } from 'react-native-router-flux';
 import firebase, { contactsRef } from '../firebase';
