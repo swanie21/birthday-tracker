@@ -23,8 +23,8 @@ describe('IndividualContact components', () => {
     expect(wrapper.find(Text)).to.have.length(2);
   });
 
-  it('should render 2 Button components', () => {
-    expect(wrapper.find(Button)).to.have.length(2);
+  it('should render 3 Button components', () => {
+    expect(wrapper.find(Button)).to.have.length(3);
   });
 
   it('should render 1 AutoGrowingTextInput component', () => {

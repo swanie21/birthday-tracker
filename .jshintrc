@@ -35,6 +35,6 @@
   "eqnull": true,
   "esnext": true,
   "unused": true,
-  "mocha": true,
-  "esversion": 6
+  "mocha": true  
+  /*"esversion": 6*/
 }

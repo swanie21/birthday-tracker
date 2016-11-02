@@ -28,6 +28,13 @@ export default class AddContact extends Component {
     });
   }
 
+  editContact() {
+    this.setState({
+      firstName: this.state.firstName,
+      lastName: this.state.lastName
+    });
+  }
+
   render() {
     return (
       <View style={styles.addContact}>

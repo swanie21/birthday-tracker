@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { View, Text, TouchableHighlight, Image } from 'react-native';
 import { shallow, mount } from 'enzyme';
 import { expect } from 'chai';
 import ContactCard from '../components/ContactCard';
@@ -17,8 +17,12 @@ describe('ContactCard component', () => {
     expect(wrapper.find(Text)).to.have.length(2);
   });
 
-  it('should render 1 View component', () => {
-    expect(wrapper.find(View)).to.have.length(1);
+  it('should render 2 View components', () => {
+    expect(wrapper.find(View)).to.have.length(2);
+  });
+
+  it('should render 1 Image component', () => {
+    expect(wrapper.find(Image)).to.have.length(1);
   });
 
   it('should have props for firstName, lastName, birthdayDate, id, and onPress', () => {
