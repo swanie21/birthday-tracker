@@ -4,7 +4,7 @@ import ContactList from './ContactList';
 import AddContact from './AddContact';
 import IndividualContact from './IndividualContact';
 import { Text } from 'react-native';
-import { Router, Scene } from 'react-native-router-flux';
+import { Router, Scene, ActionConst } from 'react-native-router-flux';
 
 const TabIcon = ({ selected, title }) => {
   return (
@@ -28,7 +28,6 @@ const Main = () => {
               key="contacts"
               component={ContactList}
               title="Saves the Day"
-              initial
             />
           </Scene>
 

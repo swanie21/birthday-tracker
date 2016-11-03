@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import styles from '../styles/main';
-import { View, Text, TextInput, StyleSheet, Image } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Image, ListView } from 'react-native';
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 import Button from '../components/Button';
+import split from 'split-object';
 import { Actions } from 'react-native-router-flux';
 import firebase, { contactsRef } from '../firebase';
 
@@ -10,13 +11,28 @@ export default class IndividualContact extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: ''
+      dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
+      notesInput: '',
+      notes: []
     };
     this.createNotes = this.createNotes.bind(this);
   }
 
+  componentDidMount() {
+    contactsRef.on('value', (snapshot) => {
+      let notes = snapshot.val();
+      if(!notes) { return this.setState({ notes: [], dataSource: this.state.dataSource.cloneWithRows({}) }); }
+      notes = split(notes).map(note => Object.assign({ id: note.key }, note.value));
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(notes),
+        notes
+      });
+    });
+  }
+
   createNotes(id) {
-    firebase.database().ref(`contacts/${id}`).push(this.state);
+    const notesRef = firebase.database().ref(`contacts/${id}`);
+    notesRef.push(this.state.notesInput);
   }
 
   render() {
@@ -33,13 +49,19 @@ export default class IndividualContact extends Component {
           <AutoGrowingTextInput
             style={styles.notesInput}
             placeholder='Present ideas...'
-            onChangeText={notes => this.setState({notes})}
-            value={this.state.notes}
+            onChangeText={notesInput => this.setState({notesInput})}
+            value={this.state.notesInput}
           />
         </View>
-        {/* <Button onPress={e => this.createNotes(this.props.id)} title="Save" /> */}
+        <ListView
+          style={{backgroundColor: 'red'}}
+          enableEmptySections
+          dataSource={this.state.dataSource}
+          renderRow={(notes) => <Text>{notes.notesInput}</Text>}
+        />
+        <Button onPress={e => this.createNotes(this.props.id)} title="Save" />
         <View style={styles.row}>
-          <Button onPress={() => Actions.addContacts({firstName: this.props.firstName})} title="Edit" />
+          <Button onPress={() => Actions.addContacts({firstName: this.props.firstName, lastName: this.props.lastName, birthdayDate: this.props.birthdayDate, avatar: this.props.avatar})} title="Edit" />
           <Button onPress={e => this.props.onPress(this.props.id)} title="Delete" />
         </View>
       </View>

@@ -5,7 +5,6 @@ import { View, Text, TouchableHighlight, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 const ContactCard = ({ firstName, lastName, birthdayDate, id, onPress, avatar }) => {
-  console.log(avatar);
   return (
     <TouchableHighlight
       style={styles.contactCard}
