@@ -9,13 +9,20 @@ import Camera from '../components/Camera';
 import { Actions } from 'react-native-router-flux';
 
 export default class AddContact extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      firstName: '',
+      firstName: props.firstName || '',
       lastName: '',
       birthdayDate: new Date(),
+      avatar: null
     };
+  }
+
+  setAvatar(avatar) {
+    this.setState({
+      avatar: avatar
+    });
   }
 
   createContact() {
@@ -24,7 +31,8 @@ export default class AddContact extends Component {
     this.setState({
       firstName: '',
       lastName: '',
-      birthdayDate: new Date()
+      birthdayDate: new Date(),
+      avatar: null
     });
   }
 
@@ -38,17 +46,19 @@ export default class AddContact extends Component {
   render() {
     return (
       <View style={styles.addContact}>
-        <Camera />
+        <Camera avatar={this.state.avatar} setAvatar={this.setAvatar.bind(this)} />
         <View style={styles.firstNameInput}>
           <TextInput
             style={styles.inputFields}
             placeholder='First Name'
             onChangeText={firstName => this.setState({firstName})}
             value={this.state.firstName}
+            onSubmitEditing={e => this.refs.lastNameInput.focus()}
           />
         </View>
         <View style={styles.lastNameInput}>
           <TextInput
+            ref='lastNameInput'
             style={styles.inputFields}
             placeholder='Last Name'
             onChangeText={lastName => this.setState({lastName})}
