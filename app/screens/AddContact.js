@@ -13,9 +13,9 @@ export default class AddContact extends Component {
     super(props);
     this.state = {
       firstName: props.firstName || '',
-      lastName: '',
-      birthdayDate: new Date(),
-      avatar: null
+      lastName: props.lastName || '',
+      birthdayDate: props.birthdayDate || new Date(),
+      avatar: props.avatar || null
     };
   }
 
@@ -27,6 +27,10 @@ export default class AddContact extends Component {
 
   createContact() {
     contactsRef.push(this.state);
+    this.resetContactState();
+  }
+
+  resetContactState() {
     Actions.contactList();
     this.setState({
       firstName: '',
@@ -36,10 +40,12 @@ export default class AddContact extends Component {
     });
   }
 
-  editContact() {
+  componentWillUnmount() {
     this.setState({
-      firstName: this.state.firstName,
-      lastName: this.state.lastName
+      firstName: '',
+      lastName: '',
+      birthdayDate: new Date(),
+      avatar: null
     });
   }
 
@@ -77,7 +83,10 @@ export default class AddContact extends Component {
             onDateChange={birthdayDate => this.setState({birthdayDate})}
           />
         </View>
-        <Button onPress={(this.createContact.bind(this))} title='Save' />
+        <View style={styles.row}>
+          <Button onPress={(this.resetContactState.bind(this))} title='Cancel' />
+          <Button onPress={(this.createContact.bind(this))} title='Save' />
+        </View>
       </View>
     );
   }
