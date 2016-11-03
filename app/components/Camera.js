@@ -4,15 +4,9 @@ import { Text, View, TouchableOpacity, Image, Platform } from 'react-native';
 import styles from '../styles/main';
 import ImagePicker from 'react-native-image-picker';
 
-export default class Camera extends Component {
-  constructor() {
-  super();
-    this.state = {
-      avatar: null,
-    };
-  }
+const Camera = (props) => {
 
-  selectPhotoTapped() {
+  const selectPhotoTapped = () => {
     const options = {
       quality: 1.0,
       maxWidth: 125,
@@ -33,25 +27,22 @@ export default class Camera extends Component {
       }
       else {
         const source = {uri: 'data:image/jpeg;base64,' + response.data, isStatic: true};
-
-        this.setState({
-          avatar: source
-        });
+        props.setAvatar(source);
       }
     });
-  }
+  };
 
-  render() {
-    return (
-      <View>
-        <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
-          <View>
-          { this.state.avatar === null ? <Image style={styles.avatar} source={require('../img/avatar-placeholder.png')} /> :
-            <Image style={styles.avatar} source={this.state.avatar} />
-          }
-          </View>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+  return (
+    <View>
+      <TouchableOpacity onPress={selectPhotoTapped.bind(this)}>
+        <View>
+        { props.avatar === null ? <Image style={styles.avatar} source={require('../img/avatar-placeholder.png')} /> :
+          <Image style={styles.avatar} source={props.avatar} />
+        }
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
 }
+
+export default Camera;
