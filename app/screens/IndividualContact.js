@@ -18,26 +18,27 @@ export default class IndividualContact extends Component {
     this.createNotes = this.createNotes.bind(this);
   }
 
-  componentDidMount() {
-    contactsRef.on('value', (snapshot) => {
-      let notes = snapshot.val();
-      if(!notes) { return this.setState({ notes: [], dataSource: this.state.dataSource.cloneWithRows({}) }); }
-      notes = split(notes).map(note => Object.assign({ id: note.key }, note.value));
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(notes),
-        notes
-      });
-    });
-  }
-
+  // componentDidMount() {
+  //   contactsRef.on('child_added', (snapshot) => {
+  //     let notes = snapshot.val();
+  //     if(!notes) { return this.setState({ notes: [], dataSource: this.state.dataSource.cloneWithRows({}) }); }
+  //     notes = split(notes).map(note => (console.log(note.value.notes)));
+  //     this.setState({
+  //       dataSource: this.state.dataSource.cloneWithRows(notes),
+  //       notes: notes
+  //     });
+  //   });
+  // }
+  //
   createNotes(id) {
     const notesRef = firebase.database().ref(`contacts/${id}`);
-    notesRef.push(this.state.notesInput);
+    notesRef.push({notes: this.state.notesInput});
   }
 
   render() {
     return (
       <View style={styles.individualContact}>
+      {/* <View> */}
         <View>
           { !this.props.avatar ? <Image style={styles.individualAvatar} source={require('../img/individual-avatar.png')} /> :
             <Image style={styles.individualAvatar} source={{uri: this.props.avatar.uri}} />
@@ -53,12 +54,12 @@ export default class IndividualContact extends Component {
             value={this.state.notesInput}
           />
         </View>
-        <ListView
+        {/* <ListView
           style={{backgroundColor: 'red'}}
           enableEmptySections
           dataSource={this.state.dataSource}
-          renderRow={(notes) => <Text>{notes.notesInput}</Text>}
-        />
+          renderRow={(notes) => <Text>{notes}</Text>}
+        /> */}
         <Button onPress={e => this.createNotes(this.props.id)} title="Save" />
         <View style={styles.row}>
           <Button onPress={() => Actions.addContacts({firstName: this.props.firstName, lastName: this.props.lastName, birthdayDate: this.props.birthdayDate, avatar: this.props.avatar})} title="Edit" />
