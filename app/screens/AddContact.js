@@ -40,14 +40,10 @@ export default class AddContact extends Component {
     });
   }
 
-  componentWillUnmount() {
-    this.setState({
-      firstName: '',
-      lastName: '',
-      birthdayDate: new Date(),
-      avatar: null
-    });
-  }
+  // updateContact(id) {
+  //   const editRef = firebase.database().ref(`contacts/${id}`);
+  //   editRef.push(this.state);
+  // }
 
   render() {
     return (
@@ -58,7 +54,7 @@ export default class AddContact extends Component {
             style={styles.inputFields}
             placeholder='First Name'
             onChangeText={firstName => this.setState({firstName})}
-            value={this.state.firstName}
+            value={this.state.firstName || this.props.firstName}
             onSubmitEditing={e => this.refs.lastNameInput.focus()}
           />
         </View>
@@ -68,7 +64,7 @@ export default class AddContact extends Component {
             style={styles.inputFields}
             placeholder='Last Name'
             onChangeText={lastName => this.setState({lastName})}
-            value={this.state.lastName}
+            value={this.state.lastName || this.props.lastName}
           />
         </View>
         <View>
