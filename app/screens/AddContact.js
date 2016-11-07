@@ -19,6 +19,15 @@ export default class AddContact extends Component {
     };
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      firstName: newProps.firstName,
+      lastName: newProps.lastName,
+      birthdayDate: newProps.birthdayDate,
+      avatar: newProps.avatar || null
+    });
+  }
+
   setAvatar(avatar) {
     this.setState({
       avatar: avatar
@@ -32,6 +41,7 @@ export default class AddContact extends Component {
 
   resetContactState() {
     Actions.contactList();
+    Actions.pop();
     this.setState({
       firstName: '',
       lastName: '',
@@ -39,11 +49,6 @@ export default class AddContact extends Component {
       avatar: null
     });
   }
-
-  // updateContact(id) {
-  //   const editRef = firebase.database().ref(`contacts/${id}`);
-  //   editRef.push(this.state);
-  // }
 
   render() {
     return (
