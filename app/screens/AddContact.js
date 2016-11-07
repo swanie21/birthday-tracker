@@ -1,12 +1,12 @@
 'use strict';
 import React, { Component } from 'react';
 import styles from '../styles/main';
-import { TextInput, Image, View, TouchableHighlight } from 'react-native';
-import Button from '../components/Button';
+import { TextInput, View } from 'react-native';
 import firebase, { contactsRef } from '../firebase';
+import { Actions } from 'react-native-router-flux';
+import Button from '../components/Button';
 import DatePicker from 'react-native-datepicker';
 import Camera from '../components/Camera';
-import { Actions } from 'react-native-router-flux';
 
 export default class AddContact extends Component {
   constructor(props) {
@@ -35,13 +35,16 @@ export default class AddContact extends Component {
   }
 
   createContact() {
-    contactsRef.push(this.state);
+    if(this.props.editing) {
+      this.props.updateContact(this.props.id, this.state);
+    } else {
+      contactsRef.push(this.state);
+    }
     this.resetContactState();
   }
 
   resetContactState() {
     Actions.contactList();
-    Actions.pop();
     this.setState({
       firstName: '',
       lastName: '',
