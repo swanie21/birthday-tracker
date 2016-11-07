@@ -62,7 +62,16 @@ export default class IndividualContact extends Component {
         /> */}
         {/* <Button onPress={e => this.createNotes(this.props.id)} title="Save" /> */}
         <View style={styles.row}>
-          <Button onPress={() => Actions.addContacts({firstName: this.props.firstName, lastName: this.props.lastName, birthdayDate: this.props.birthdayDate, avatar: this.props.avatar, id: this.props.id})} title="Edit" />
+          <Button onPress={() => Actions.addContacts(
+            {editing: true,
+            firstName: this.props.firstName,
+            lastName: this.props.lastName,
+            birthdayDate: this.props.birthdayDate,
+            avatar: this.props.avatar,
+            id: this.props.id,
+            updateContact: (id, state) => contactsRef.child(id).update(state)})}
+            title="Edit"
+          />
           <Button onPress={e => this.props.onPress(this.props.id)} title="Delete" />
         </View>
       </View>
