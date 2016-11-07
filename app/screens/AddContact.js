@@ -19,6 +19,15 @@ export default class AddContact extends Component {
     };
   }
 
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      firstName: newProps.firstName,
+      lastName: newProps.lastName,
+      birthdayDate: newProps.birthdayDate,
+      avatar: newProps.avatar || null
+    });
+  }
+
   setAvatar(avatar) {
     this.setState({
       avatar: avatar
@@ -32,15 +41,7 @@ export default class AddContact extends Component {
 
   resetContactState() {
     Actions.contactList();
-    this.setState({
-      firstName: '',
-      lastName: '',
-      birthdayDate: new Date(),
-      avatar: null
-    });
-  }
-
-  componentWillUnmount() {
+    Actions.pop();
     this.setState({
       firstName: '',
       lastName: '',
@@ -58,7 +59,7 @@ export default class AddContact extends Component {
             style={styles.inputFields}
             placeholder='First Name'
             onChangeText={firstName => this.setState({firstName})}
-            value={this.state.firstName}
+            value={this.state.firstName || this.props.firstName}
             onSubmitEditing={e => this.refs.lastNameInput.focus()}
           />
         </View>
@@ -68,7 +69,7 @@ export default class AddContact extends Component {
             style={styles.inputFields}
             placeholder='Last Name'
             onChangeText={lastName => this.setState({lastName})}
-            value={this.state.lastName}
+            value={this.state.lastName || this.props.lastName}
           />
         </View>
         <View>
