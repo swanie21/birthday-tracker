@@ -45,6 +45,7 @@ export default class IndividualContact extends Component {
             placeholder='Present ideas...'
             onChangeText={notesInput => this.saveNotes({notesInput})}
             value={checkNotesObject}
+            maxHeight={200}
           />
         </View>
         <View style={styles.row}>

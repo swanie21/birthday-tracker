@@ -25,11 +25,11 @@ describe('ContactList default state', () => {
     wrapper = shallow(<ContactList />);
   });
 
-  it('should have a default contacts array that is empty', function() {
+  it('should have a default contacts array that is empty', () => {
     expect(wrapper.state().contacts).to.deep.equal([]);
   });
 
-  it('should have a default searchInput state that is empty', function() {
+  it('should have a default searchInput state that is empty', () => {
     expect(wrapper.state().searchInput).to.equal('');
   });
 });
