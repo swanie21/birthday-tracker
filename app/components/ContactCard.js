@@ -4,11 +4,11 @@ import styles from '../styles/main';
 import { View, Text, TouchableHighlight, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
-const ContactCard = ({ firstName, lastName, birthdayDate, id, onPress, avatar }) => {
+const ContactCard = ({ firstName, lastName, birthdayDate, id, onPress, avatar, notesInput }) => {
   return (
     <TouchableHighlight
       style={styles.contactCard}
-      onPress={() => Actions.contactInfo({firstName, lastName, birthdayDate, id, onPress, avatar })}>
+      onPress={() => Actions.contactInfo({firstName, lastName, birthdayDate, id, onPress, avatar, notesInput })}>
       <View style={styles.row}>
         <View>
           { !avatar ? <Image style={styles.listAvatar} source={require('../img/list-avatar.png')} /> :
