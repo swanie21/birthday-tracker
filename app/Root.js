@@ -4,7 +4,7 @@ import ContactList from './screens/ContactList';
 import AddContact from './screens/AddContact';
 import IndividualContact from './screens/IndividualContact';
 import { Text } from 'react-native';
-import { Router, Scene, ActionConst } from 'react-native-router-flux';
+import { Router, Scene } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const TabIcon = ({ selected, title }) => {
@@ -15,13 +15,13 @@ const TabIcon = ({ selected, title }) => {
 
 const ContactBook = ({ selected }) => {
   return (
-    <Icon name='ios-book' size={30} color='#222222' />
+    <Icon name='ios-book' size={30} color='#013240' />
   );
 }
 
 const PlusContact = ({ selected }) => {
   return (
-    <Icon name='md-person-add' size={30} color='#222222' />
+    <Icon name='md-person-add' size={30} color='#013240' />
   );
 }
 
@@ -42,6 +42,7 @@ const Root = () => {
               key="contacts"
               component={ContactList}
               title="Saves the Day"
+              titleStyle={{ color: '#013240' }}
             />
           </Scene>
 
@@ -50,6 +51,7 @@ const Root = () => {
               key="individualContact"
               component={AddContact}
               title="Add Contact"
+              titleStyle={{ color: '#013240' }}
             />
           </Scene>
 
@@ -57,6 +59,7 @@ const Root = () => {
             key="contactInfo"
             component={IndividualContact}
             title="Contact Info"
+            titleStyle={{ color: '#013240' }}
           />
         </Scene>
 

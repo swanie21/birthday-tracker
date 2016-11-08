@@ -1,44 +1,37 @@
 import React, { Component } from 'react';
 import styles from '../styles/main';
-import { View, Text, TextInput, StyleSheet, Image, ListView } from 'react-native';
+import { View, Text, TextInput, Image } from 'react-native';
 import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
-import Button from '../components/Button';
-import split from 'split-object';
 import { Actions } from 'react-native-router-flux';
 import firebase, { contactsRef } from '../firebase';
+import split from 'split-object';
+import Button from '../components/Button';
 
 export default class IndividualContact extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: new ListView.DataSource({rowHasChanged: (row1, row2) => row1 !== row2}),
-      notesInput: '',
-      notes: []
+      newNote: '',
     };
-    // this.createNotes = this.createNotes.bind(this);
   }
 
-  // componentDidMount() {
-  //   contactsRef.on('child_added', (snapshot) => {
-  //     let notes = snapshot.val();
-  //     if(!notes) { return this.setState({ notes: [], dataSource: this.state.dataSource.cloneWithRows({}) }); }
-  //     notes = split(notes).map(note => Object.assign({ id: note.key }, note.value));
-  //     this.setState({
-  //       dataSource: this.state.dataSource.cloneWithRows(notes),
-  //       notes: notes
-  //     });
-  //   });
-  // }
+  componentWillReceiveProps(newProps) {
+    this.setState({
+      newNote: newProps.newNote || '',
+    });
+  }
 
-  // createNotes(id) {
-  //   const notesRef = firebase.database().ref(`contacts/${id}`);
-  //   notesRef.push({notes: this.state.notesInput});
-  // }
+  saveNotes(notes) {
+    this.setState({ newNote: notes });
+    contactsRef.child(this.props.id).update(notes);
+  }
 
   render() {
+    let notesValue = this.state.newNote ? this.state.newNote : this.props.notesInput;
+    let checkNotesObject = typeof notesValue === 'object' ? notesValue.notesInput : notesValue;
+
     return (
       <View style={styles.individualContact}>
-      {/* <View> */}
         <View>
           { !this.props.avatar ? <Image style={styles.individualAvatar} source={require('../img/individual-avatar.png')} /> :
             <Image style={styles.individualAvatar} source={{uri: this.props.avatar.uri}} />
@@ -50,17 +43,10 @@ export default class IndividualContact extends Component {
           <AutoGrowingTextInput
             style={styles.notesInput}
             placeholder='Present ideas...'
-            onChangeText={notesInput => this.setState({notesInput})}
-            value={this.state.notesInput}
+            onChangeText={notesInput => this.saveNotes({notesInput})}
+            value={checkNotesObject}
           />
         </View>
-        {/* <ListView
-          style={{backgroundColor: 'red'}}
-          enableEmptySections
-          dataSource={this.state.dataSource}
-          renderRow={(notes) => <Text>{notes.notesInput}</Text>}
-        /> */}
-        {/* <Button onPress={e => this.createNotes(this.props.id)} title="Save" /> */}
         <View style={styles.row}>
           <Button onPress={() => Actions.addContacts(
             {editing: true,
