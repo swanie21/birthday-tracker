@@ -17,8 +17,8 @@ describe('ContactCard component', () => {
     expect(wrapper.find(Text)).to.have.length(2);
   });
 
-  it('should render 2 View components', () => {
-    expect(wrapper.find(View)).to.have.length(2);
+  it('should render 3 View components', () => {
+    expect(wrapper.find(View)).to.have.length(3);
   });
 
   it('should render 1 Image component', () => {

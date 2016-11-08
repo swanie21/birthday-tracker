@@ -20,8 +20,8 @@ describe('AddContact components', () => {
     expect(wrapper.find(Camera)).to.have.length(1);
   });
 
-  it('should render Button component', () => {
-    expect(wrapper.find(Button)).to.have.length(1);
+  it('should render 2 Button components', () => {
+    expect(wrapper.find(Button)).to.have.length(2);
   });
 });
 
@@ -31,15 +31,19 @@ describe('AddContact default state', () => {
     MockDate.set(new Date('10/31/2016'));
   });
 
-  it('should have a default firstName state that is empty', function() {
+  it('should have a default firstName state that is empty', () => {
     expect(wrapper.state().firstName).to.equal('');
   });
 
-  it('should have a default lastName state that is empty', function() {
+  it('should have a default lastName state that is empty', () => {
     expect(wrapper.state().lastName).to.equal('');
   });
 
-  it.skip('should have a default birthdayDate set to new Date()', function() {
+  it('should have a default avatar state that is null', () => {
+    expect(wrapper.state().avatar).to.equal(null);
+  });
+
+  it.skip('should have a default birthdayDate set to new Date()', () => {
     expect(wrapper.state().birthdayDate).to.equal(new Date('10/31/2016'));
   });
 });

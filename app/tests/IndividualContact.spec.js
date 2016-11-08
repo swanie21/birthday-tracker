@@ -15,16 +15,16 @@ describe('IndividualContact components', () => {
     expect(wrapper.type()).to.equal(View);
   });
 
-  it('should render 2 View components', () => {
-    expect(wrapper.find(View)).to.have.length(2);
+  it('should render 4 View components', () => {
+    expect(wrapper.find(View)).to.have.length(4);
   });
 
   it('should render 2 Text components', () => {
     expect(wrapper.find(Text)).to.have.length(2);
   });
 
-  it('should render 3 Button components', () => {
-    expect(wrapper.find(Button)).to.have.length(3);
+  it('should render 2 Button components', () => {
+    expect(wrapper.find(Button)).to.have.length(2);
   });
 
   it('should render 1 AutoGrowingTextInput component', () => {
@@ -37,8 +37,8 @@ describe('IndividualContact default state', () => {
     wrapper = shallow(<IndividualContact />);
   });
 
-  it('should have a default notes state that is empty', function() {
-    expect(wrapper.state().notes).to.deep.equal('');
+  it('should have a default newNote state that is empty', () => {
+    expect(wrapper.state().newNote).to.deep.equal('');
   });
 });
 
@@ -47,7 +47,7 @@ describe('IndividualContact props', () => {
     wrapper = shallow(<IndividualContact />);
   });
 
-  it('should have props for firstName, lastName, birthdayDate, id, onPress, title, placeholder, style', () => {
+  it('should have props for firstName, lastName, birthdayDate, id, onPress, title, placeholder, style and notesInput', () => {
     expect(wrapper.props('firstName')).to.be.defined;
     expect(wrapper.props('lastName')).to.be.defined;
     expect(wrapper.props('birthdayDate')).to.be.defined;
@@ -56,5 +56,6 @@ describe('IndividualContact props', () => {
     expect(wrapper.props('title')).to.be.defined;
     expect(wrapper.props('placeholder')).to.be.defined;
     expect(wrapper.props('style')).to.be.defined;
+    expect(wrapper.props('notesInput')).to.be.defined;
   });
 });

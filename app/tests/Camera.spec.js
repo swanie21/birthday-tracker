@@ -25,10 +25,6 @@ describe('Camera component', () => {
     expect(wrapper.find(TouchableOpacity)).to.have.length(1);
   });
 
-  it('should have a default avatar state that is null', function() {
-    expect(wrapper.state().avatar).to.equal(null);
-  });
-
   it('should have props for source, onPress, and style', () => {
     expect(wrapper.props('source')).to.be.defined;
     expect(wrapper.props('onPress')).to.be.defined;
