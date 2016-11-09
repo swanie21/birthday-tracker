@@ -1,6 +1,6 @@
 'use strict';
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, Image, Platform } from 'react-native';
+import { View, TouchableOpacity, Image, Platform } from 'react-native';
 import styles from '../styles/main';
 import ImagePicker from 'react-native-image-picker';
 

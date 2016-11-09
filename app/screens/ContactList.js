@@ -21,7 +21,11 @@ export default class ContactList extends Component {
   componentDidMount() {
     contactsRef.on('value', (snapshot) => {
       let contacts = snapshot.val();
-      if(!contacts) { return this.setState({ contacts: [], dataSource: this.state.dataSource.cloneWithRows({}) }); }
+      if(!contacts) {
+        return this.setState({
+          contacts: [], dataSource: this.state.dataSource.cloneWithRows({})
+        });
+      }
       contacts = split(contacts).map(contact => Object.assign({ id: contact.key }, contact.value));
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(contacts),

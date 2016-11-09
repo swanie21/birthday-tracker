@@ -1,7 +1,7 @@
 addContact {
-  flex: 1;
-  background-color: #09C6AB;
   align-items: center;
+  background-color: #09C6AB;
+  flex: 1;
   padding-top: 75px;
 }
 
@@ -19,8 +19,8 @@ inputFields {
 }
 
 datePicker {
-  border-radius: 10px;
   background-color: #EAE8E8;
+  border-radius: 10px;
   width: 320px;
 }
 
