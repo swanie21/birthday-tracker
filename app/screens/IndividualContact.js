@@ -32,40 +32,44 @@ export default class IndividualContact extends Component {
 
     return (
       <View style={styles.individualContact}>
-        <View>
-          { !this.props.avatar ? <Image style={styles.individualAvatar} source={require('../img/individual-avatar.png')} /> :
-            <Image style={styles.individualAvatar} source={{uri: this.props.avatar.uri}} />
-          }
-        </View>
-        <Text style={styles.nameText}>{`${this.props.firstName} ${this.props.lastName}`}</Text>
-        <Text style={styles.birthdayText}>🎈{this.props.birthdayDate}</Text>
-        <View style={styles.notesField}>
-          <ScrollView>
-            <TextField
-              label={'Present ideas...'}
-              highlightColor={'#02556D'}
-              labelColor={'#02556D'}
-              textColor={'#013240'}
-              borderColor={'#EAE8E8'}
-              keyboardType='default'
-              onChangeText={notesInput => this.saveNotes({notesInput})}
-              value={checkNotesObject}
+        <ScrollView>
+          <View style={styles.centerAvatar}>
+            { !this.props.avatar ? <Image style={styles.individualAvatar} source={require('../img/individual-avatar.png')} /> :
+              <Image style={styles.individualAvatar} source={{uri: this.props.avatar.uri}} />
+            }
+          </View>
+          <View style={styles.centerInfo}>
+            <Text style={styles.nameText}>{`${this.props.firstName} ${this.props.lastName}`}</Text>
+            <Text style={styles.birthdayText}>🎈{this.props.birthdayDate}</Text>
+          </View>
+          <View style={styles.notesField}>
+            <ScrollView>
+              <TextField
+                label={'Present ideas...'}
+                highlightColor={'#02556D'}
+                labelColor={'#02556D'}
+                textColor={'#013240'}
+                borderColor={'#EAE8E8'}
+                keyboardType='default'
+                onChangeText={notesInput => this.saveNotes({notesInput})}
+                value={checkNotesObject}
+              />
+            </ScrollView>
+          </View>
+          <View style={styles.buttonRow}>
+            <Button onPress={() => Actions.addContacts(
+              {editing: true,
+              firstName: this.props.firstName,
+              lastName: this.props.lastName,
+              birthdayDate: this.props.birthdayDate,
+              avatar: this.props.avatar,
+              id: this.props.id,
+              updateContact: (id, state) => contactsRef.child(id).update(state)})}
+              title="Edit"
             />
-          </ScrollView>
-        </View>
-        <View style={styles.row}>
-          <Button onPress={() => Actions.addContacts(
-            {editing: true,
-            firstName: this.props.firstName,
-            lastName: this.props.lastName,
-            birthdayDate: this.props.birthdayDate,
-            avatar: this.props.avatar,
-            id: this.props.id,
-            updateContact: (id, state) => contactsRef.child(id).update(state)})}
-            title="Edit"
-          />
-          <Button onPress={e => this.props.onPress(this.props.id)} title="Delete" />
-        </View>
+            <Button onPress={e => this.props.onPress(this.props.id)} title="Delete" />
+          </View>
+        </ScrollView>
       </View>
     );
   }

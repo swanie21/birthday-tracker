@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, ScrollView } from 'react-native';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import AddContact from '../screens/AddContact';
@@ -22,6 +22,10 @@ describe('AddContact components', () => {
 
   it('should render 2 Button components', () => {
     expect(wrapper.find(Button)).to.have.length(2);
+  });
+
+  it('should render 1 ScrollView component', () => {
+    expect(wrapper.find('ScrollView')).to.have.length(1);
   });
 });
 

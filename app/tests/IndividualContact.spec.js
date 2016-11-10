@@ -15,8 +15,8 @@ describe('IndividualContact components', () => {
     expect(wrapper.type()).to.equal(View);
   });
 
-  it('should render 4 View components', () => {
-    expect(wrapper.find(View)).to.have.length(4);
+  it('should render 5 View components', () => {
+    expect(wrapper.find(View)).to.have.length(5);
   });
 
   it('should render 2 Text components', () => {
@@ -27,8 +27,8 @@ describe('IndividualContact components', () => {
     expect(wrapper.find(Button)).to.have.length(2);
   });
 
-  it('should render 1 ScrollView component', () => {
-    expect(wrapper.find('ScrollView')).to.have.length(1);
+  it('should render 2 ScrollView component', () => {
+    expect(wrapper.find('ScrollView')).to.have.length(2);
   });
 
   it('should render 1 TextField component', () => {

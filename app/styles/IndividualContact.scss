@@ -11,6 +11,11 @@ notesField {
 individualAvatar {
   border-radius: 62.5px;
   height: 125px;
-  margin-top: 75px;
+  margin: 75px 0 3px 0;
   width: 125px;
+}
+
+centerInfo {
+  align-items: center;
+  justify-content: center;
 }

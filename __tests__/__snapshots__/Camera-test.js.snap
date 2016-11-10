@@ -1,5 +1,11 @@
 exports[`test renders correctly 1`] = `
-<View>
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+    }
+  }>
   <View
     accessibilityComponentType={undefined}
     accessibilityLabel={undefined}

@@ -33,7 +33,7 @@ const Camera = (props) => {
   };
 
   return (
-    <View>
+    <View style={styles.centerAvatar}>
       <TouchableOpacity onPress={selectPhotoTapped.bind(this)}>
         <View>
         { props.avatar === null ? <Image style={styles.avatar} source={require('../img/avatar-placeholder.png')} /> :

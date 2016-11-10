@@ -18,3 +18,8 @@ buttonText {
   font-size: 18px;
   text-align: center;
 }
+
+buttonRow {
+  flex-direction: row;
+  justify-content: center;
+}
