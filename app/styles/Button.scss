@@ -13,6 +13,21 @@ button {
  }
 }
 
+disabledButton {
+  background-color: #eff1a1;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 5px;
+  width: 80px;
+  shadow-color: #000000;
+  shadow-opacity: 0.3;
+  shadow-radius: 3;
+  shadow-offset {
+   height: 0;
+   width: 0;
+ }
+}
+
 buttonText {
   color: #02556D;
   font-size: 18px;

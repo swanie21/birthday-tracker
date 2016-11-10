@@ -5,6 +5,7 @@ import { TextInput, View, ScrollView } from 'react-native';
 import firebase, { contactsRef } from '../firebase';
 import { Actions } from 'react-native-router-flux';
 import Button from '../components/Button';
+import DisabledButton from '../components/DisabledButton';
 import DatePicker from 'react-native-datepicker';
 import Camera from '../components/Camera';
 
@@ -12,19 +13,19 @@ export default class AddContact extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstName: props.firstName || '',
-      lastName: props.lastName || '',
-      birthdayDate: props.birthdayDate || '',
-      avatar: props.avatar || null
+      firstName: '',
+      lastName: '',
+      birthdayDate: new Date(),
+      avatar: null
     };
   }
 
-  componentWillReceiveProps(newProps) {
+  componentWillReceiveProps(props) {
     this.setState({
-      firstName: newProps.firstName,
-      lastName: newProps.lastName,
-      birthdayDate: newProps.birthdayDate,
-      avatar: newProps.avatar || null
+      firstName: props.firstName || '',
+      lastName: props.lastName || '',
+      birthdayDate: props.birthdayDate || new Date(),
+      avatar: props.avatar || null
     });
   }
 
@@ -88,10 +89,16 @@ export default class AddContact extends Component {
               onDateChange={birthdayDate => this.setState({birthdayDate})}
             />
           </View>
-          <View style={styles.buttonRow}>
-            <Button onPress={(this.resetContactState.bind(this))} title='Cancel' />
-            <Button onPress={(this.createContact.bind(this))} title='Save' />
-          </View>
+          {this.state.firstName === '' || this.state.lastName === '' ?
+            <View style={styles.buttonRow}>
+              <Button onPress={(this.resetContactState.bind(this))} title='Cancel' />
+              <DisabledButton title='Save' />
+            </View> :
+            <View style={styles.buttonRow}>
+              <Button onPress={(this.resetContactState.bind(this))} title='Cancel' />
+              <Button onPress={(this.createContact.bind(this))} title='Save' />
+            </View>
+          }
         </ScrollView>
       </View>
     );

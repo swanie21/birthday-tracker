@@ -3,15 +3,14 @@ import React, { Component } from 'react';
 import styles from '../styles/main';
 import { Text, TouchableHighlight } from 'react-native';
 
-const Button = ({ onPress, title }) => {
+const DisabledButton = ({ title }) => {
   return (
     <TouchableHighlight
-      style={styles.button}
-      underlayColor={'#F7E74A'}
-      onPress={onPress}>
+      style={styles.disabledButton}
+      underlayColor={'#eff1a1'}>
       <Text style={styles.buttonText}>{title}</Text>
     </TouchableHighlight>
   );
 }
 
-export default Button;
+export default DisabledButton;

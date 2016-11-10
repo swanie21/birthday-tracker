@@ -12,6 +12,6 @@ This birthday tracker mobile app was made with Firebase and React Native. It sto
 __npm packages installed:__  
 react-native-datepicker  
 react-native-image-picker  
-react-native-md-textinput
+react-native-md-textinput  
 react-native-router-flux  
 react-native-vector-icons
