@@ -1,0 +1,27 @@
+exports[`test renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#EAE8E8",
+      "borderRadius": 10,
+      "marginBottom": 10,
+      "marginLeft": 0,
+      "marginRight": 0,
+      "marginTop": 80,
+      "width": 320,
+    }
+  }>
+  <TextInput
+    autoCapitalize="none"
+    autoCorrect={false}
+    onChange={undefined}
+    placeholder="Search contacts"
+    style={
+      Object {
+        "color": "#02556D",
+        "height": 40,
+        "textAlign": "center",
+      }
+    } />
+</View>
+`;
