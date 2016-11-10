@@ -1,16 +1,16 @@
 'use strict';
 import React, { Component } from 'react';
 import styles from '../styles/main';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { Text, TouchableHighlight } from 'react-native';
 
 const Button = ({ onPress, title }) => {
   return (
-    <View style={styles.button}>
-      <TouchableHighlight
-        onPress={onPress}>
-        <Text style={styles.buttonText}>{title}</Text>
-      </TouchableHighlight>
-    </View>
+    <TouchableHighlight
+      style={styles.button}
+      underlayColor={'#eff1a1'}
+      onPress={onPress}>
+      <Text style={styles.buttonText}>{title}</Text>
+    </TouchableHighlight>
   );
 }
 

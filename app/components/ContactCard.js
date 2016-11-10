@@ -8,6 +8,7 @@ const ContactCard = ({ firstName, lastName, birthdayDate, id, onPress, avatar, n
   return (
     <TouchableHighlight
       style={styles.contactCard}
+      underlayColor={'#73c8bc'}
       onPress={() => Actions.contactInfo({firstName, lastName, birthdayDate, id, onPress, avatar, notesInput })}>
       <View style={styles.row}>
         <View>

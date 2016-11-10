@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import { Text, TouchableHighlight } from 'react-native';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import Button from '../components/Button';
@@ -11,7 +11,7 @@ describe('Button component', () => {
   });
 
   it('should be rendered into a View container', () => {
-    expect(wrapper.type()).to.equal(View);
+    expect(wrapper.type()).to.equal(TouchableHighlight);
   });
 
   it('should have onPress prop', () => {
