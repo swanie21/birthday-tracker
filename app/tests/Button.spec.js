@@ -3,6 +3,7 @@ import { View, Text, TouchableHighlight } from 'react-native';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import Button from '../components/Button';
+// import sinon from 'sinon';
 
 describe('Button component', () => {
   beforeEach(() => {
@@ -27,5 +28,13 @@ describe('Button component', () => {
 
   it('should render 1 TouchableHighlight component', () => {
     expect(wrapper.find(TouchableHighlight)).to.have.length(1);
+  });
+
+  it.skip('should handle button presses', () => {
+    const onPress = sinon.spy();
+    const button = shallow(<Button onPress={onPress} />
+    );
+    button.simulate('click');
+      expect(onPress.calledOnce).to.equal(true);
   });
 });

@@ -32,4 +32,8 @@ describe('ContactList default state', () => {
   it('should have a default searchInput state that is empty', () => {
     expect(wrapper.state().searchInput).to.equal('');
   });
+  it('should render an empty contact array on the initial state', () => {
+    expect(wrapper.state().contacts).to.be.instanceof(Array);
+    expect(wrapper.state().contacts.length).to.equal(0);
+  });
 });

@@ -34,11 +34,10 @@ describe('ContactCard component', () => {
   });
 
   it.skip('should call the onPress prop when clicked', () => {
-  const onPressMock = jest.fn();
-  const wrapper = mount(
-    <ContactCard onPress={onPressMock} />
-  );
-  wrapper.find(TouchableHighlight).simulate('click');
-    expect(onPressMock).toBeCalled();
+    const onPress = jest.fn();
+    const wrapper = mount(<ContactCard onPress={onPress} />
+    );
+    wrapper.find(TouchableHighlight).simulate('click');
+      expect(onPress).toBeCalled();
   });
 });
