@@ -1,6 +1,6 @@
 # Saves the Day - Birthday Tracker
 
-![gif](http://g.recordit.co/avasJW2wW9.gif)
+![gif](http://g.recordit.co/D8hR7vm9hk.gif)
 
 __To use app:__
 * clone repo

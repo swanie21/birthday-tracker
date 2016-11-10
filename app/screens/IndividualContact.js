@@ -48,6 +48,8 @@ export default class IndividualContact extends Component {
               textColor={'#013240'}
               borderColor={'#EAE8E8'}
               keyboardType='default'
+              onChangeText={notesInput => this.saveNotes({notesInput})}
+              value={checkNotesObject}
             />
           </ScrollView>
         </View>
