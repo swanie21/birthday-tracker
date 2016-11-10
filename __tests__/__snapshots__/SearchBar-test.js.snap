@@ -8,7 +8,7 @@ exports[`test renders correctly 1`] = `
       "marginLeft": 0,
       "marginRight": 0,
       "marginTop": 80,
-      "width": 320,
+      "width": 300,
     }
   }>
   <TextInput

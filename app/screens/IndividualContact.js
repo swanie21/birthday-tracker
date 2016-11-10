@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../styles/main';
-import { View, Text, TextInput, Image } from 'react-native';
-import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
+import { View, Text, TextInput, Image, ScrollView } from 'react-native';
+import TextField from 'react-native-md-textinput';
 import { Actions } from 'react-native-router-flux';
 import firebase, { contactsRef } from '../firebase';
 import split from 'split-object';
@@ -40,13 +40,16 @@ export default class IndividualContact extends Component {
         <Text style={styles.nameText}>{`${this.props.firstName} ${this.props.lastName}`}</Text>
         <Text style={styles.birthdayText}>🎈{this.props.birthdayDate}</Text>
         <View style={styles.notesField}>
-          <AutoGrowingTextInput
-            style={styles.notesInput}
-            placeholder='Present ideas...'
-            onChangeText={notesInput => this.saveNotes({notesInput})}
-            value={checkNotesObject}
-            maxHeight={200}
-          />
+          <ScrollView>
+            <TextField
+              label={'Present ideas...'}
+              highlightColor={'#02556D'}
+              labelColor={'#02556D'}
+              textColor={'#013240'}
+              borderColor={'#EAE8E8'}
+              keyboardType='default'
+            />
+          </ScrollView>
         </View>
         <View style={styles.row}>
           <Button onPress={() => Actions.addContacts(

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
-import { shallow, mount } from 'enzyme';
+import { TextField } from 'react-native-md-textinput';
+import { shallow, mount, ScrollView } from 'enzyme';
 import { expect } from 'chai';
 import IndividualContact from '../screens/IndividualContact';
 import Button from '../components/Button';
@@ -27,8 +27,12 @@ describe('IndividualContact components', () => {
     expect(wrapper.find(Button)).to.have.length(2);
   });
 
-  it('should render 1 AutoGrowingTextInput component', () => {
-    expect(wrapper.find(AutoGrowingTextInput)).to.have.length(1);
+  it('should render 1 ScrollView component', () => {
+    expect(wrapper.find('ScrollView')).to.have.length(1);
+  });
+
+  it('should render 1 TextField component', () => {
+    expect(wrapper.find('TextField')).to.have.length(1);
   });
 });
 
