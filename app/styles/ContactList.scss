@@ -1,20 +1,18 @@
 contactList {
   align-items: center;
-  background-color: #09C6AB;
+  background-color: $primary-teal-color;
   flex: 1;
   justify-content: center;
   padding-bottom: 60px;
 }
 
 searchBar {
-  background-color: #EAE8E8;
-  border-radius: 10px;
+  @include inputField;
   margin: 80px 0 10px 0;
-  width: 300px;
 }
 
 searchInput {
-  color: #02556D;
+  color: $text-teal-color;
   height: 40px;
   text-align: center;
 }

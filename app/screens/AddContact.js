@@ -5,19 +5,20 @@ import { TextInput, View, ScrollView } from 'react-native';
 import firebase, { contactsRef } from '../firebase';
 import { Actions } from 'react-native-router-flux';
 import Button from '../components/Button';
-import DisabledButton from '../components/DisabledButton';
 import DatePicker from 'react-native-datepicker';
 import Camera from '../components/Camera';
+
+const defaultState = {
+  firstName: '',
+  lastName: '',
+  birthdayDate: new Date(),
+  avatar: null
+};
 
 export default class AddContact extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      firstName: '',
-      lastName: '',
-      birthdayDate: new Date(),
-      avatar: null
-    };
+    this.state = Object.assign({}, defaultState);
   }
 
   componentWillReceiveProps(props) {
@@ -30,12 +31,10 @@ export default class AddContact extends Component {
   }
 
   setAvatar(avatar) {
-    this.setState({
-      avatar: avatar
-    });
+    this.setState({ avatar });
   }
 
-  createContact() {
+  saveContact() {
     if(this.props.editing) {
       this.props.updateContact(this.props.id, this.state);
     } else {
@@ -46,12 +45,7 @@ export default class AddContact extends Component {
 
   resetContactState() {
     Actions.contactList();
-    this.setState({
-      firstName: '',
-      lastName: '',
-      birthdayDate: new Date(),
-      avatar: null
-    });
+    this.setState(Object.assign({}, defaultState));
   }
 
   render() {
@@ -63,6 +57,7 @@ export default class AddContact extends Component {
             <TextInput
               style={styles.inputFields}
               placeholder='First Name'
+              autoCorrect={false}
               onChangeText={firstName => this.setState({firstName})}
               value={this.state.firstName || this.props.firstName}
               onSubmitEditing={e => this.refs.lastNameInput.focus()}
@@ -73,6 +68,7 @@ export default class AddContact extends Component {
               ref='lastNameInput'
               style={styles.inputFields}
               placeholder='Last Name'
+              autoCorrect={false}
               onChangeText={lastName => this.setState({lastName})}
               value={this.state.lastName || this.props.lastName}
             />
@@ -92,11 +88,11 @@ export default class AddContact extends Component {
           {this.state.firstName === '' || this.state.lastName === '' ?
             <View style={styles.buttonRow}>
               <Button onPress={(this.resetContactState.bind(this))} title='Cancel' />
-              <DisabledButton title='Save' />
+              <Button disabled={true} title='Save' />
             </View> :
             <View style={styles.buttonRow}>
               <Button onPress={(this.resetContactState.bind(this))} title='Cancel' />
-              <Button onPress={(this.createContact.bind(this))} title='Save' />
+              <Button onPress={(this.saveContact.bind(this))} title='Save' />
             </View>
           }
         </ScrollView>

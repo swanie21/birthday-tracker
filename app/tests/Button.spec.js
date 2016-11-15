@@ -1,9 +1,8 @@
 import React from 'react';
-import { Text, TouchableHighlight } from 'react-native';
-import { shallow } from 'enzyme';
+import { View, Text, TouchableHighlight } from 'react-native';
+import { shallow, mount } from 'enzyme';
 import { expect } from 'chai';
 import Button from '../components/Button';
-// import sinon from 'sinon';
 
 describe('Button component', () => {
   beforeEach(() => {
@@ -11,7 +10,7 @@ describe('Button component', () => {
   });
 
   it('should be rendered into a View container', () => {
-    expect(wrapper.type()).to.equal(TouchableHighlight);
+    expect(wrapper.type()).to.equal(View);
   });
 
   it('should have onPress prop', () => {
@@ -31,10 +30,9 @@ describe('Button component', () => {
   });
 
   it.skip('should handle button presses', () => {
-    const onPress = sinon.spy();
-    const button = shallow(<Button onPress={onPress} />
-    );
+    const onPress = jest.fn();
+    const button = mount(<Button onPress={onPress} />);
     button.simulate('click');
-      expect(onPress.calledOnce).to.equal(true);
+    expect(onPress.calledOnce).to.equal(true);
   });
 });
