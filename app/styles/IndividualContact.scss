@@ -1,6 +1,6 @@
 individualContact {
   align-items: center;
-  background-color: #09C6AB;
+  background-color: $primary-teal-color;
   flex: 1;
 }
 
@@ -9,10 +9,8 @@ notesField {
 }
 
 individualAvatar {
-  border-radius: 62.5px;
-  height: 125px;
+  @include largeAvatar;
   margin: 75px 0 3px 0;
-  width: 125px;
 }
 
 centerInfo {

@@ -1,25 +1,25 @@
 loginScreen {
   align-items: center;
-  background-color: #068888;
+  background-color: $login-screen-teal-color;
   flex: 1;
   padding-top: 90px;
 }
 
 loginButton {
-  background-color: #09C6AB;
+  background-color: $primary-teal-color;
   margin-top: 30px;
   padding: 10px;
   width: 250px;
 }
 
 loginButtonText {
-  color: #02556D;
+  color: $text-teal-color;
   font-size: 16px;
   text-align: center;
 }
 
 appTitle {
-  color: #F7E74A;
+  color: $medium-yellow-color;
   font-size: 40px;
   font-weight: bold;
   margin-bottom: 30px;

@@ -36,15 +36,11 @@ export default class ContactList extends Component {
 
   filterContacts(e) {
     let textInput = e.nativeEvent.text.toLowerCase();
-    let filter = [];
-      this.state.contacts.forEach(contact => {
-        if(contact.firstName.toLowerCase().indexOf(textInput) !== -1 ||
-          contact.lastName.toLowerCase().indexOf(textInput) !== -1) {
-          filter.push(contact);
-        }
-      });
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(filter)
+    const filter = this.state.contacts.filter(({ firstName, lastName }) => {
+      return (firstName + ' ' + lastName).toLowerCase().includes(textInput);
+    });
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(filter)
     });
   }
 
