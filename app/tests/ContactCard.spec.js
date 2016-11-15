@@ -9,8 +9,8 @@ describe('ContactCard component', () => {
     wrapper = shallow(<ContactCard />);
   });
 
-  it('should be rendered into a TouchableHighlight container', () => {
-    expect(wrapper.type()).to.equal(TouchableHighlight);
+  it('should be rendered into a View container', () => {
+    expect(wrapper.type()).to.equal(View);
   });
 
   it('should render 2 Text components', () => {

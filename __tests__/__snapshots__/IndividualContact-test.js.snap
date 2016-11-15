@@ -7,7 +7,12 @@ exports[`test renders correctly 1`] = `
       "flex": 1,
     }
   }>
-  <ScrollView>
+  <ScrollView
+    style={
+      Object {
+        "flex": 1,
+      }
+    }>
     <View
       style={
         Object {

@@ -51,7 +51,7 @@ export default class AddContact extends Component {
   render() {
     return (
       <View style={styles.addContact}>
-        <ScrollView>
+        <ScrollView style={styles.scrollView}>
           <Camera avatar={this.state.avatar} setAvatar={this.setAvatar.bind(this)} />
           <View style={styles.firstNameInput}>
             <TextInput

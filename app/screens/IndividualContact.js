@@ -32,7 +32,7 @@ export default class IndividualContact extends Component {
 
     return (
       <View style={styles.individualContact}>
-        <ScrollView>
+        <ScrollView style={styles.scrollView}>
           <View style={styles.centerAvatar}>
             { !this.props.avatar ? <Image style={styles.individualAvatar} source={require('../img/individual-avatar.png')} /> :
               <Image style={styles.individualAvatar} source={{uri: this.props.avatar.uri}} />
