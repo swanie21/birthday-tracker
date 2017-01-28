@@ -27,6 +27,9 @@ export default class IndividualContact extends Component {
   }
 
   render() {
+    let props = this.props;
+    console.log(props);
+    console.log(props.firstName);
     let notesValue = this.state.newNote ? this.state.newNote : this.props.notesInput;
     let checkNotesObject = typeof notesValue === 'object' ? notesValue.notesInput : notesValue;
 
